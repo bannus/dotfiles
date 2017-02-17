@@ -1,10 +1,10 @@
+[include]
+  path = .gitconfig_public
 [color]
   diff = auto
   status = auto
   branch = auto
   interactive = auto
-[apply]
-  whitespace = nowarn
 [user]
   useConfigOnly = true
 [difftool]
@@ -13,22 +13,46 @@
   excludesfile = ~/dotfiles/git/.gitignore_global
   editor = vim
 [alias]
-  co = checkout
-  publish = push origin HEAD
-  deploy = push deploy HEAD
-  branches = !~/.dotfiles/git/git-describe-branches.pl
-  add-desc = !~/.dotfiles/git/git-add-description.sh
-  fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
-  squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
-  ri = rebase --interactive --autosquash
-  wayback = !sh -c 'git checkout `git rev-list -n 1 --before="$1" HEAD`'
+  # shortcuts
   amend = commit --amend -C HEAD
-  credit = commit --amend --author "$1 <$2>" -C HEAD
-  ll = log --graph --decorate --oneline
-  lll = log --graph --decorate --pretty='%C(auto)%h%d %s%n- %aN <%ae>%Creset%n'
-  context = !~/.dotfiles/git/git-context.sh
-  undo = reset --soft HEAD^
+  branches = branch -vv
   cleanup = !sh -c 'git remote | xargs -n 1 git remote prune && git branch --merged | grep -v \"*\" | xargs -n 1 git branch -d'
+  co = checkout
+  cob = checkout -b
+  credit = commit --amend --author "$1 <$2>" -C HEAD
+  deploy = push deploy HEAD
+  fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+  gr = grep --heading -n --break
+  publish = push origin HEAD
+  ri = rebase --interactive --autosquash
+  squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+  undo = reset --soft HEAD^
+  wayback = !sh -c 'git checkout `git rev-list -n 1 --before="$1" HEAD`'
+
+  # logging
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+
+  # scripts
+  ff = "!git checkout --quiet --detach; \
+    git fetch origin master:master; \
+    git fetch origin develop:develop; \
+    git checkout --quiet -"
+  # don't reset without first committing, just in case...
+  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+
+  #branches = !~/.dotfiles/git/git-describe-branches.pl
+  #add-desc = !~/.dotfiles/git/git-add-description.sh
+  #context = !~/.dotfiles/git/git-context.sh
+[color "grep"]
+  match = cyan
+  filename = white bold
+  linenumber = yellow
+  separator = white
+[core]
+  editor = 'C:\\Program Files (x86)\\Vim\\vim74\\gvim.exe' -f -i NONE
+  autocrlf = false
+  whitespace = cr-at-eol
 [merge]
   ff = only
 [status]
@@ -39,6 +63,8 @@
 [rerere]
   enabled = 1
 [push]
+  # push current branch to branch of same name on remote
   default = current
-[include]
-  path = .gitconfig_public
+[gui]
+  tabsize = 4
+  commitmsgwidth = 60
