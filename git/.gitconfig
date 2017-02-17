@@ -10,7 +10,7 @@
 [difftool]
   prompt = false
 [core]
-  excludesfile = ~/.gitignore_global
+  excludesfile = ~/dotfiles/git/.gitignore_global
   editor = vim
 [alias]
   co = checkout

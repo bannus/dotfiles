@@ -98,12 +98,13 @@ step([
       .reduce(function (str, file) {
         return str + '[include]\n  path = ' + rSource(file) + '\n'
       }, '')
+      // Git for Windows doesn't like backslashes
+      .replace(/\\/g, "\/")
       .to(aTarget('~/.gitconfig'))
-    sh.ln('-sf', lSource('git/.gitignore_global'), aTarget('~/.gitignore_global'))
 
     // SSH
     sh.mkdir('-p', aTarget('~/.ssh'))
-    sh.ln('-sf', lSource('ssh/config'), aTarget('~/.ssh/config'))
+    sh.ln('-f', lSource('ssh/config'), aTarget('~/.ssh/config'))
 
     // Vim
     sh.rm('-f', aTarget('~/.vimrc'))
@@ -111,12 +112,15 @@ step([
       .reduce(function (str, file) {
         return str + 'source ~/' + rSource(file) + '\n'
       }, '')
+      // vimrc doesn't like backslashes either
+      .replace(/\\/g, "\/")
       .to(aTarget('~/.vimrc'))
+    sh.ln('-sf', lSource('vim'), aTarget('~/vimfiles'))
+    sh.ln('-sf', lSource('vim'), aTarget('~/.vim'))
 
     // iTerm
     if (process.platform === 'darwin') {
-      sh.rm('-f', aTarget('~/.iterm/com.googlecode.iterm2.plist'))
-      sh.ln('-sf', lSource('iterm/config.plist'), aTarget('~/.iterm/com.googlecode.iterm2.plist'))
+      sh.ln('-f', lSource('iterm/config.plist'), aTarget('~/.iterm/com.googlecode.iterm2.plist'))
     }
   }
 ])
