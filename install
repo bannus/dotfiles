@@ -107,14 +107,29 @@ step([
     sh.ln('-f', lSource('ssh/config'), aTarget('~/.ssh/config'))
 
     // Vim
-    sh.rm('-f', aTarget('~/.vimrc'))
-    detectSources('vim/.vimrc')
+    // get 'source <vimrc>' line
+    vimrcSource = detectSources('vim/.vimrc')
       .reduce(function (str, file) {
         return str + 'source ~/' + rSource(file) + '\n'
       }, '')
       // vimrc doesn't like backslashes either
       .replace(/\\/g, "\/")
-      .to(aTarget('~/.vimrc'))
+    // write to .vimrc (unix)
+    sh.rm('-f', aTarget('~/.vimrc'))
+    vimrcSource.to(aTarget('~/.vimrc'))
+    // write to _vimrc (windows)
+    sh.rm('-f', aTarget('~/_vimrc'))
+    vimrcSource.to(aTarget('~/_vimrc'))
+    // write to _ideavimrc (IdeaVim plugin)
+    sh.rm('-f', aTarget('~/_ideavimrc'))
+    detectSources('vim/.ideavimrc')
+      .reduce(function (str, file) {
+        return str + 'source ~/' + rSource(file) + '\n'
+      }, '')
+      // vimrc doesn't like backslashes either
+      .replace(/\\/g, "\/")
+      .to(aTarget('~/_ideavimrc'))
+    // symlink .vim (unix) and vimfiles (windows)
     sh.ln('-sf', lSource('vim'), aTarget('~/vimfiles'))
     sh.ln('-sf', lSource('vim'), aTarget('~/.vim'))
 

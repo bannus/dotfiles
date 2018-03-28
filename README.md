@@ -22,10 +22,14 @@ the effort to make these dotfiles cross-platform.
 
 ## Usage & Installation
 
+ 1. Install node.js.
  1. [Fork the dotfiles.](https://github.com/Schoonology/dotfiles/fork)
  1. Clone your fork somewhere on the same virtual drive as your home folder. I
-    recommend `~/.dotfiles`.
- 1. Run the `install` script.
+    recommend `~/.dotfiles`. Use `git clone --recursive`. If you forget, run
+    `git submodule init` and `git submodule update` after cloning.
+ 1. Run the install script (`node install`).
+ 1. Follow the instructions at `https://github.com/bannus/vimrc`. You should skip
+    cloning the vimrc repo and creating the symlink.
  1. Edit your dotfiles, especially `.gitconfig`, to match your name, email,
     machine-specific settings, etc.
  1. Commit your changes to your fork.
