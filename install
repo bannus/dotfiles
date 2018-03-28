@@ -90,6 +90,8 @@ step([
       .reduce(function (str, file) {
         return str + 'source ~/' + rSource(file) + '\n'
       }, '')
+      // bashrc doesn't like backslashes
+      .replace(/\\/g, "\/")
       .to(aTarget('~/.bashrc'))
 
     // Git
