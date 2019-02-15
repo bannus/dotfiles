@@ -22,7 +22,7 @@
   deploy = push deploy HEAD
   fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
   gr = grep --heading -n --break
-  publish = push origin HEAD
+  publish = push -u origin HEAD
   ri = rebase --interactive --autosquash
   squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
   undo = reset --soft HEAD^
@@ -66,4 +66,8 @@
   default = current
 [gui]
   tabsize = 4
-  commitmsgwidth = 60
+  commitmsgwidth = 120
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true

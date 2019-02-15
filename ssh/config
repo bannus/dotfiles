@@ -4,4 +4,11 @@ Host bitbucket.org
   IdentityFile ~/.ssh/id_rsa_bb
 Host heroku.com
   IdentityFile ~/.ssh/id_rsa_heroku
-
+Host android-controller
+  User android-controller
+  HostName android-controller
+  IdentityFile ~/.ssh/android-host-private-key
+Host android-staging android-host1 android-host2 android-host3 android-host4 android-host5
+  User android-host
+  HostName %h
+  IdentityFile ~/.ssh/android-host-private-key
