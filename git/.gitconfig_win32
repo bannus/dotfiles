@@ -1,3 +1,5 @@
+[core]
+  whitespace = cr-at-eol
 [merge]
     tool = kdiff3
 [mergetool "kdiff3"]

@@ -14,7 +14,7 @@
 [alias]
   # shortcuts
   amend = commit --amend -C HEAD
-  branches = branch -vv
+  branches = branch -vv --sort=committerdate
   cleanup = !sh -c 'git remote | xargs -n 1 git remote prune && git branch --merged | grep -v \"*\" | xargs -n 1 git branch -d'
   co = checkout
   cob = checkout -b
@@ -27,6 +27,14 @@
   squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
   undo = reset --soft HEAD^
   wayback = !sh -c 'git checkout `git rev-list -n 1 --before="$1" HEAD`'
+
+  # list files which have changed since REVIEW_BASE
+  # (REVIEW_BASE defaults to 'develop' in my bashrc)
+  files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
+
+  # Same as above, but with a diff stat instead of just names
+  # (better for interactive use)
+  stat = !git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")
 
   # logging
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
@@ -51,7 +59,6 @@
 [core]
   editor = gvim
   autocrlf = false
-  whitespace = cr-at-eol
 [merge]
   ff = only
 [status]
@@ -68,6 +75,6 @@
   tabsize = 4
   commitmsgwidth = 120
 [pull]
-	rebase = true
+  rebase = true
 [rebase]
-	autoStash = true
+  autoStash = true
