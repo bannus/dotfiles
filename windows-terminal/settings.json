@@ -1,0 +1,416 @@
+{
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": 
+    [
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 0
+            },
+            "keys": "ctrl+1"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 1
+            },
+            "keys": "ctrl+2"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 2
+            },
+            "keys": "ctrl+3"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 6
+            },
+            "keys": "ctrl+7"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 3
+            },
+            "keys": "ctrl+4"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 7
+            },
+            "keys": "ctrl+8"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 4
+            },
+            "keys": "ctrl+5"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 5
+            },
+            "keys": "ctrl+6"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 8
+            },
+            "keys": "ctrl+9"
+        },
+        {
+            "command": "paste",
+            "keys": "ctrl+v"
+        },
+        {
+            "command": 
+            {
+                "action": "copy"
+            },
+            "keys": "ctrl+c"
+        }
+    ],
+    "defaultProfile": "{ef6c4f36-bec8-454a-a44e-8e9b93fb8194}",
+    "profiles": 
+    {
+        "defaults": {},
+        "list": 
+        [
+            {
+                "acrylicOpacity": 0.9,
+                "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & %ANDROID_MAM_ROOT%/_BuildCommon/Scripts/Startup.cmd",
+                "font": 
+                {
+                    "face": "Consolas"
+                },
+                "guid": "{ef6c4f36-bec8-454a-a44e-8e9b93fb8194}",
+                "hidden": false,
+                "icon": "%ANDROID_MAM_ROOT%/_BuildCommon/Shortcut.ico",
+                "name": "MAM",
+                "useAcrylic": true
+            },
+            {
+                "acrylicOpacity": 0.9,
+                "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & %ANDROID_MDM_ROOT%/_BuildCommon/Scripts/Startup.cmd",
+                "guid": "{92f6a13a-5ef5-4f7a-aa2d-f82825503a67}",
+                "hidden": false,
+                "icon": "%ANDROID_MDM_ROOT%/_BuildCommon/Shortcut.ico",
+                "name": "MDM",
+                "useAcrylic": true
+            },
+            {
+                "acrylicOpacity": 0.9,
+                "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & %ANDROID_AWT_ROOT%/_BuildCommon/Scripts/Startup.cmd",
+                "hidden": false,
+                "icon": "%ANDROID_AWT_ROOT%/_BuildCommon/Shortcut.ico",
+                "name": "AWT",
+                "useAcrylic": true
+            },
+            {
+                "acrylicOpacity": 0.9,
+                "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & %ANDROID_SHAREDTOOLS_ROOT%/_BuildCommon/Scripts/Startup.cmd",
+                "guid": "{acff64f3-1b72-4fb5-8a8c-9183b362511a}",
+                "hidden": false,
+                "icon": "%ANDROID_SHAREDTOOLS_ROOT%/_BuildCommon/Shortcut.ico",
+                "name": "AST",
+                "useAcrylic": true
+            },
+            {
+                "acrylicOpacity": 0.9,
+                "commandline": "cmd.exe /k c:/src/msazure/Intune/Svc/ChromebookSync/init.cmd",
+                "guid": "{4ff9f75b-1d1d-436f-8455-8a961b0edd08}",
+                "hidden": false,
+                "icon": "c:/src/msazure/Intune/Svc/ChromebookSync/.config/icon.ico",
+                "name": "ChromebookSync",
+                "useAcrylic": true
+            },
+            {
+                "commandline": "powershell.exe",
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
+            },
+            {
+                "commandline": "cmd.exe",
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "cmd"
+            },
+            {
+                "commandline": "cmd.exe /k c:/src/msazure/Intune/Svc/AppLife/init.cmd",
+                "guid": "{c8213c6d-261f-495b-8e67-c28e547a2098}",
+                "hidden": false,
+                "icon": "c:/src/msazure/Intune/Svc/AppLife/.config/icon.ico",
+                "name": "AppLifecycle"
+            },
+            {
+                "commandline": "cmd.exe /k c:/src/msazure/Intune/UX/App/init.cmd",
+                "guid": "{09ec2cad-41b7-448d-ad4b-3cd0a4311664}",
+                "hidden": false,
+                "icon": "c:/src/msazure/Intune/UX/App/.config/icon.ico",
+                "name": "UX-App"
+            },
+            {
+                "commandline": "cmd.exe /k c:/src/msazure/Intune/Service/init.cmd",
+                "guid": "{45f70178-ee79-4540-94bc-0c496dd003cc}",
+                "hidden": false,
+                "icon": "c:/src/msazure/Intune/Service/.config/icon.ico",
+                "name": "Service (monolith)"
+            },
+            {
+                "commandline": "cmd.exe /k c:/src/msazure/Intune/Svc/AndroidSync/init.cmd",
+                "guid": "{d851353e-94c8-4f5d-92d1-1387f9e12c47}",
+                "hidden": false,
+                "icon": "c:/src/msazure/Intune/Service/.config/icon.ico",
+                "name": "AndroidSync"
+            },
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": false,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            },
+            {
+                "commandline": "cmd.exe /k c:/src/msazure/Intune/UX/DeviceConfig/init.cmd",
+                "guid": "{f4e37b13-b510-42f0-9a7e-fc86339cf150}",
+                "icon": "c:/src/msazure/Intune/UX/DeviceConfig/.config/icon.ico",
+                "name": "UX-DeviceConfig",
+                "tabTitle": "UX-DeviceConfig"
+            }
+        ]
+    },
+    "schemes": 
+    [
+        {
+            "background": "#0C0C0C",
+            "black": "#0C0C0C",
+            "blue": "#0037DA",
+            "brightBlack": "#767676",
+            "brightBlue": "#3B78FF",
+            "brightCyan": "#61D6D6",
+            "brightGreen": "#16C60C",
+            "brightPurple": "#B4009E",
+            "brightRed": "#E74856",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#F9F1A5",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#3A96DD",
+            "foreground": "#CCCCCC",
+            "green": "#13A10E",
+            "name": "Campbell",
+            "purple": "#881798",
+            "red": "#C50F1F",
+            "selectionBackground": "#FFFFFF",
+            "white": "#CCCCCC",
+            "yellow": "#C19C00"
+        },
+        {
+            "background": "#012456",
+            "black": "#0C0C0C",
+            "blue": "#0037DA",
+            "brightBlack": "#767676",
+            "brightBlue": "#3B78FF",
+            "brightCyan": "#61D6D6",
+            "brightGreen": "#16C60C",
+            "brightPurple": "#B4009E",
+            "brightRed": "#E74856",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#F9F1A5",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#3A96DD",
+            "foreground": "#CCCCCC",
+            "green": "#13A10E",
+            "name": "Campbell Powershell",
+            "purple": "#881798",
+            "red": "#C50F1F",
+            "selectionBackground": "#FFFFFF",
+            "white": "#CCCCCC",
+            "yellow": "#C19C00"
+        },
+        {
+            "background": "#282C34",
+            "black": "#282C34",
+            "blue": "#61AFEF",
+            "brightBlack": "#5A6374",
+            "brightBlue": "#61AFEF",
+            "brightCyan": "#56B6C2",
+            "brightGreen": "#98C379",
+            "brightPurple": "#C678DD",
+            "brightRed": "#E06C75",
+            "brightWhite": "#DCDFE4",
+            "brightYellow": "#E5C07B",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#56B6C2",
+            "foreground": "#DCDFE4",
+            "green": "#98C379",
+            "name": "One Half Dark",
+            "purple": "#C678DD",
+            "red": "#E06C75",
+            "selectionBackground": "#FFFFFF",
+            "white": "#DCDFE4",
+            "yellow": "#E5C07B"
+        },
+        {
+            "background": "#FAFAFA",
+            "black": "#383A42",
+            "blue": "#0184BC",
+            "brightBlack": "#4F525D",
+            "brightBlue": "#61AFEF",
+            "brightCyan": "#56B5C1",
+            "brightGreen": "#98C379",
+            "brightPurple": "#C577DD",
+            "brightRed": "#DF6C75",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#E4C07A",
+            "cursorColor": "#4F525D",
+            "cyan": "#0997B3",
+            "foreground": "#383A42",
+            "green": "#50A14F",
+            "name": "One Half Light",
+            "purple": "#A626A4",
+            "red": "#E45649",
+            "selectionBackground": "#FFFFFF",
+            "white": "#FAFAFA",
+            "yellow": "#C18301"
+        },
+        {
+            "background": "#002B36",
+            "black": "#002B36",
+            "blue": "#268BD2",
+            "brightBlack": "#073642",
+            "brightBlue": "#839496",
+            "brightCyan": "#93A1A1",
+            "brightGreen": "#586E75",
+            "brightPurple": "#6C71C4",
+            "brightRed": "#CB4B16",
+            "brightWhite": "#FDF6E3",
+            "brightYellow": "#657B83",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#2AA198",
+            "foreground": "#839496",
+            "green": "#859900",
+            "name": "Solarized Dark",
+            "purple": "#D33682",
+            "red": "#DC322F",
+            "selectionBackground": "#FFFFFF",
+            "white": "#EEE8D5",
+            "yellow": "#B58900"
+        },
+        {
+            "background": "#FDF6E3",
+            "black": "#002B36",
+            "blue": "#268BD2",
+            "brightBlack": "#073642",
+            "brightBlue": "#839496",
+            "brightCyan": "#93A1A1",
+            "brightGreen": "#586E75",
+            "brightPurple": "#6C71C4",
+            "brightRed": "#CB4B16",
+            "brightWhite": "#FDF6E3",
+            "brightYellow": "#657B83",
+            "cursorColor": "#002B36",
+            "cyan": "#2AA198",
+            "foreground": "#657B83",
+            "green": "#859900",
+            "name": "Solarized Light",
+            "purple": "#D33682",
+            "red": "#DC322F",
+            "selectionBackground": "#FFFFFF",
+            "white": "#EEE8D5",
+            "yellow": "#B58900"
+        },
+        {
+            "background": "#000000",
+            "black": "#000000",
+            "blue": "#3465A4",
+            "brightBlack": "#555753",
+            "brightBlue": "#729FCF",
+            "brightCyan": "#34E2E2",
+            "brightGreen": "#8AE234",
+            "brightPurple": "#AD7FA8",
+            "brightRed": "#EF2929",
+            "brightWhite": "#EEEEEC",
+            "brightYellow": "#FCE94F",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#06989A",
+            "foreground": "#D3D7CF",
+            "green": "#4E9A06",
+            "name": "Tango Dark",
+            "purple": "#75507B",
+            "red": "#CC0000",
+            "selectionBackground": "#FFFFFF",
+            "white": "#D3D7CF",
+            "yellow": "#C4A000"
+        },
+        {
+            "background": "#FFFFFF",
+            "black": "#000000",
+            "blue": "#3465A4",
+            "brightBlack": "#555753",
+            "brightBlue": "#729FCF",
+            "brightCyan": "#34E2E2",
+            "brightGreen": "#8AE234",
+            "brightPurple": "#AD7FA8",
+            "brightRed": "#EF2929",
+            "brightWhite": "#EEEEEC",
+            "brightYellow": "#FCE94F",
+            "cursorColor": "#000000",
+            "cyan": "#06989A",
+            "foreground": "#555753",
+            "green": "#4E9A06",
+            "name": "Tango Light",
+            "purple": "#75507B",
+            "red": "#CC0000",
+            "selectionBackground": "#FFFFFF",
+            "white": "#D3D7CF",
+            "yellow": "#C4A000"
+        },
+        {
+            "background": "#000000",
+            "black": "#000000",
+            "blue": "#000080",
+            "brightBlack": "#808080",
+            "brightBlue": "#0000FF",
+            "brightCyan": "#00FFFF",
+            "brightGreen": "#00FF00",
+            "brightPurple": "#FF00FF",
+            "brightRed": "#FF0000",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFFF00",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#008080",
+            "foreground": "#C0C0C0",
+            "green": "#008000",
+            "name": "Vintage",
+            "purple": "#800080",
+            "red": "#800000",
+            "selectionBackground": "#FFFFFF",
+            "white": "#C0C0C0",
+            "yellow": "#808000"
+        }
+    ],
+    "startOnUserLogin": true,
+    "windowingBehavior": "useExisting"
+}
