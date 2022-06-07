@@ -1,4 +1,5 @@
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "actions": 
     [
@@ -22,41 +23,17 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 2
-            },
-            "keys": "ctrl+3"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 6
-            },
-            "keys": "ctrl+7"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 3
-            },
-            "keys": "ctrl+4"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 7
-            },
-            "keys": "ctrl+8"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
                 "index": 4
             },
             "keys": "ctrl+5"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 2
+            },
+            "keys": "ctrl+3"
         },
         {
             "command": 
@@ -70,13 +47,9 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 8
+                "index": 6
             },
-            "keys": "ctrl+9"
-        },
-        {
-            "command": "paste",
-            "keys": "ctrl+v"
+            "keys": "ctrl+7"
         },
         {
             "command": 
@@ -84,6 +57,34 @@
                 "action": "copy"
             },
             "keys": "ctrl+c"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 7
+            },
+            "keys": "ctrl+8"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 3
+            },
+            "keys": "ctrl+4"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 8
+            },
+            "keys": "ctrl+9"
+        },
+        {
+            "command": "paste",
+            "keys": "ctrl+v"
         }
     ],
     "defaultProfile": "{ef6c4f36-bec8-454a-a44e-8e9b93fb8194}",
@@ -93,7 +94,6 @@
         "list": 
         [
             {
-                "acrylicOpacity": 0.9,
                 "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & %ANDROID_MAM_ROOT%/_BuildCommon/Scripts/Startup.cmd",
                 "font": 
                 {
@@ -103,51 +103,52 @@
                 "hidden": false,
                 "icon": "%ANDROID_MAM_ROOT%/_BuildCommon/Shortcut.ico",
                 "name": "MAM",
+                "opacity": 90,
                 "useAcrylic": true
             },
             {
-                "acrylicOpacity": 0.9,
                 "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & %ANDROID_MDM_ROOT%/_BuildCommon/Scripts/Startup.cmd",
                 "guid": "{92f6a13a-5ef5-4f7a-aa2d-f82825503a67}",
                 "hidden": false,
                 "icon": "%ANDROID_MDM_ROOT%/_BuildCommon/Shortcut.ico",
                 "name": "MDM",
+                "opacity": 90,
                 "useAcrylic": true
             },
             {
-                "acrylicOpacity": 0.9,
                 "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & %ANDROID_AWT_ROOT%/_BuildCommon/Scripts/Startup.cmd",
+                "guid": "{5ec6f37d-f982-5689-9fda-31549fae3d13}",
                 "hidden": false,
                 "icon": "%ANDROID_AWT_ROOT%/_BuildCommon/Shortcut.ico",
                 "name": "AWT",
+                "opacity": 90,
                 "useAcrylic": true
             },
             {
-                "acrylicOpacity": 0.9,
                 "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & %ANDROID_SHAREDTOOLS_ROOT%/_BuildCommon/Scripts/Startup.cmd",
                 "guid": "{acff64f3-1b72-4fb5-8a8c-9183b362511a}",
                 "hidden": false,
                 "icon": "%ANDROID_SHAREDTOOLS_ROOT%/_BuildCommon/Shortcut.ico",
                 "name": "AST",
+                "opacity": 90,
                 "useAcrylic": true
             },
             {
-                "acrylicOpacity": 0.9,
-                "commandline": "cmd.exe /k c:/src/msazure/Intune/Svc/ChromebookSync/init.cmd",
+                "commandline": "powershell.exe -NoExit \"cd %CBSYNC_ROOT%; start-corext\"",
                 "guid": "{4ff9f75b-1d1d-436f-8455-8a961b0edd08}",
                 "hidden": false,
                 "icon": "c:/src/msazure/Intune/Svc/ChromebookSync/.config/icon.ico",
                 "name": "ChromebookSync",
+                "opacity": 90,
+                "tabTitle": "cbsync",
                 "useAcrylic": true
             },
             {
-                "commandline": "powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
             },
             {
-                "commandline": "cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "cmd"
@@ -181,12 +182,6 @@
                 "name": "AndroidSync"
             },
             {
-                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-                "hidden": false,
-                "name": "Ubuntu",
-                "source": "Windows.Terminal.Wsl"
-            },
-            {
                 "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
                 "hidden": false,
                 "name": "Azure Cloud Shell",
@@ -198,6 +193,59 @@
                 "icon": "c:/src/msazure/Intune/UX/DeviceConfig/.config/icon.ico",
                 "name": "UX-DeviceConfig",
                 "tabTitle": "UX-DeviceConfig"
+            },
+            {
+                "commandline": "cmd.exe /k c:/src/msazure/Intune/UX/TenantSetup/init.cmd",
+                "guid": "{cc49dbbe-558a-4780-ab63-2bccb0b321d2}",
+                "icon": "c:/src/msazure/Intune/UX/TenantSetup/.config/icon.ico",
+                "name": "UX-TenantSetup",
+                "tabTitle": "UX-TenantSetup"
+            },
+            {
+                "guid": "{6be0784f-fb11-5e23-8be6-94f0247408de}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2019 (2)",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{823ac0d7-f20c-5599-9895-21c8d9e4b1ff}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2019 (2)",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{1d07b806-b468-5af6-bfe2-9c9f81a1d4de}",
+                "hidden": true,
+                "name": "Developer Command Prompt for VS 2019",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{58a9647a-7ad4-578e-869a-f96ed4a2f2a2}",
+                "hidden": true,
+                "name": "Developer PowerShell for VS 2019",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "commandline": "powershell.exe -NoExit \"cd %INTUNE_ROOT%\\Svc\\DeviceFE; start-corext\"",
+                "guid": "{1a03f7ce-4d81-4aba-948b-b974563bc368}",
+                "hidden": false,
+                "icon": "c:/src/msazure/Intune/Svc/DeviceFE/.config/icon.ico",
+                "name": "DeviceFE",
+                "opacity": 90,
+                "tabTitle": "DeviceFE",
+                "useAcrylic": true
+            },
+            {
+                "guid": "{20ff8ca6-110e-5439-ae28-c07f61ff4a59}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{8a09d118-bdce-5879-a1ef-c19c7cbacf52}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
