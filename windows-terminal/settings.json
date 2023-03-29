@@ -104,6 +104,7 @@
                 "icon": "%ANDROID_MAM_ROOT%/_BuildCommon/Shortcut.ico",
                 "name": "MAM",
                 "opacity": 90,
+                "startingDirectory": "%ANDROID_MAM_ROOT%",
                 "useAcrylic": true
             },
             {
@@ -113,6 +114,7 @@
                 "icon": "%ANDROID_MDM_ROOT%/_BuildCommon/Shortcut.ico",
                 "name": "MDM",
                 "opacity": 90,
+                "startingDirectory": "%ANDROID_MDM_ROOT%",
                 "useAcrylic": true
             },
             {
@@ -122,6 +124,7 @@
                 "icon": "%ANDROID_AWT_ROOT%/_BuildCommon/Shortcut.ico",
                 "name": "AWT",
                 "opacity": 90,
+                "startingDirectory": "%ANDROID_AWT_ROOT%",
                 "useAcrylic": true
             },
             {
@@ -131,15 +134,27 @@
                 "icon": "%ANDROID_SHAREDTOOLS_ROOT%/_BuildCommon/Shortcut.ico",
                 "name": "AST",
                 "opacity": 90,
+                "startingDirectory": "%ANDROID_SHAREDTOOLS_ROOT%",
                 "useAcrylic": true
             },
             {
                 "commandline": "powershell.exe -NoExit \"cd c:/src/mam-net/; ./init.ps1\"",
                 "guid": "{44c2a969-55ed-4b33-81ff-2b25c4e83e22}",
                 "hidden": false,
-                "icon": "%ANDROID_SHAREDTOOLS_ROOT%/_BuildCommon/Shortcut.ico",
+                "icon": "c:/src/mam-net/.config/shortcut.ico",
                 "name": "MAM .NET",
                 "opacity": 90,
+                "startingDirectory": "c:/src/mam-net",
+                "useAcrylic": true
+            },
+            {
+                "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & c:/src/xamarin-mam/_BuildCommon/Scripts/Startup.cmd",
+                "guid": "{790e3fee-7869-4df4-90de-323f5d27eb08}",
+                "hidden": false,
+                "icon": "c:/src/xamarin-mam/_BuildCommon/Shortcut.ico",
+                "name": "Xamarin MAM",
+                "opacity": 90,
+                "startingDirectory": "c:/src/xamarin-mam",
                 "useAcrylic": true
             },
             {
@@ -150,6 +165,7 @@
                 "name": "ChromebookSync",
                 "opacity": 90,
                 "tabTitle": "cbsync",
+                "startingDirectory": "%CBSYNC_ROOT%",
                 "useAcrylic": true
             },
             {
@@ -445,5 +461,6 @@
         }
     ],
     "startOnUserLogin": true,
+    "themes": [],
     "windowingBehavior": "useExisting"
 }
