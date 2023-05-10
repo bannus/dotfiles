@@ -128,6 +128,20 @@
                 "useAcrylic": true
             },
             {
+                "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & pwsh -NoLogo -NoExit -F C:\\src\\core\\init.ps1",
+                "font": 
+                {
+                    "face": "Consolas"
+                },
+                "guid": "{dee6733c-ae0c-474a-b2e9-fb7bdc54f15e}",
+                "hidden": false,
+                "icon": "c:/src/core/_BuildCommon/Shortcut.ico",
+                "name": "Core",
+                "opacity": 90,
+                "startingDirectory": "c:/src/core",
+                "useAcrylic": true
+            },
+            {
                 "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & %ANDROID_SHAREDTOOLS_ROOT%/_BuildCommon/Scripts/Startup.cmd",
                 "guid": "{acff64f3-1b72-4fb5-8a8c-9183b362511a}",
                 "hidden": false,
