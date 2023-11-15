@@ -58,7 +58,7 @@
   separator = white
 [core]
   editor = gvim
-  autocrlf = false
+  autocrlf = input
 [merge]
   ff = only
 [status]
