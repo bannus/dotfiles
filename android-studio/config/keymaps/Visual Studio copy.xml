@@ -1,8 +1,20 @@
 <keymap version="1" name="Visual Studio copy" parent="Visual Studio">
+  <action id="Adtui.ZoomToFitAction">
+    <keyboard-shortcut first-keystroke="ctrl divide" />
+  </action>
   <action id="Back">
     <keyboard-shortcut first-keystroke="ctrl alt left" />
     <mouse-shortcut keystroke="button4" />
     <keyboard-shortcut first-keystroke="alt left" />
+  </action>
+  <action id="CommentByLineComment">
+    <keyboard-shortcut first-keystroke="ctrl alt slash" />
+    <keyboard-shortcut first-keystroke="ctrl alt divide" />
+    <keyboard-shortcut first-keystroke="ctrl k" second-keystroke="c" />
+    <keyboard-shortcut first-keystroke="ctrl k" second-keystroke="ctrl c" />
+    <keyboard-shortcut first-keystroke="ctrl k" second-keystroke="ctrl slash" />
+    <keyboard-shortcut first-keystroke="ctrl k" second-keystroke="ctrl u" />
+    <keyboard-shortcut first-keystroke="ctrl slash" />
   </action>
   <action id="Diff.FocusOppositePane" />
   <action id="Diff.FocusOppositePaneAndScroll" />
@@ -34,6 +46,9 @@
     <keyboard-shortcut first-keystroke="shift ctrl alt n" />
     <keyboard-shortcut first-keystroke="shift ctrl comma" />
   </action>
+  <action id="Images.Editor.ActualSize">
+    <keyboard-shortcut first-keystroke="ctrl divide" />
+  </action>
   <action id="NextTab">
     <keyboard-shortcut first-keystroke="ctrl tab" />
   </action>
@@ -60,4 +75,12 @@
     <keyboard-shortcut first-keystroke="shift alt up" />
   </action>
   <action id="Switcher" />
+  <action id="UpdateRunningApplication" />
+  <action id="android.deploy.ApplyChanges">
+    <keyboard-shortcut first-keystroke="ctrl f10" />
+  </action>
+  <action id="android.deploy.CodeSwap">
+    <keyboard-shortcut first-keystroke="ctrl alt f10" />
+  </action>
+  <action id="copilot.disposeInlays" />
 </keymap>

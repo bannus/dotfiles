@@ -3,5 +3,5 @@
 [merge]
     tool = kdiff3
 [mergetool "kdiff3"]
-    path = "C:/Users/bavander/AppData/Local/KDiff3/bin/kdiff3.exe"
+    path = C:/Users/bavander/AppData/Local/KDiff3/bin/kdiff3.exe
     trustExitCode = false
