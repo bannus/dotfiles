@@ -10,7 +10,9 @@
 [difftool]
   prompt = false
 [core]
-  excludesfile = ~/dotfiles/git/.gitignore_global
+  excludesfile = ~/.dotfiles/git/.gitignore_global
+  editor = gvim
+  autocrlf = input
 [alias]
   # shortcuts
   amend = commit --amend -C HEAD
@@ -56,11 +58,8 @@
   filename = white bold
   linenumber = yellow
   separator = white
-[core]
-  editor = gvim
-  autocrlf = input
 [merge]
-  ff = only
+  ;ff = only
 [status]
   short = true
   branch = true
@@ -78,3 +77,7 @@
   rebase = true
 [rebase]
   autoStash = true
+[fetch]
+  prune = true
+[diff]
+  algorithm = histogram
