@@ -2,7 +2,9 @@
 var fs = require('fs')
   , path = require('path')
   , exec = require('child_process').exec
+  , readline = require('readline')
   , sh
+  , isWorkMachine = false
 
 // Normalize HOME environment variable.
 process.env.HOME = process.env.HOME || process.env.HOMEDRIVE + process.env.HOMEPATH
@@ -82,6 +84,15 @@ step([
       return callback()
     })
   },
+  // Ask whether this is a work machine to determine optional installs.
+  function askWorkMachine(callback) {
+    var rl = readline.createInterface({ input: process.stdin, output: process.stdout })
+    rl.question('Is this a work machine? [y/N] ', function (answer) {
+      rl.close()
+      isWorkMachine = /^y(es)?$/i.test(answer.trim())
+      callback()
+    })
+  },
   // Link all the dotfiles, and install all the things.
   function install() {
     // Bash
@@ -153,6 +164,38 @@ step([
       if (!sh.test('-d', devTarget) && !sh.test('-L', devTarget)) {
         sh.mkdir('-p', path.dirname(devTarget))
         sh.exec('cmd /c mklink /J "' + devTarget + '" "' + wsSource + '"')
+      }
+    }
+    
+    // Windows Terminal (Windows only)
+    if (process.platform === 'win32') {
+      var wtStoreDir = path.join(process.env.LOCALAPPDATA, 'Packages', 'Microsoft.WindowsTerminal_8wekyb3d8bbwe', 'LocalState')
+      var wtDir = sh.test('-d', wtStoreDir)
+        ? wtStoreDir
+        : path.join(process.env.LOCALAPPDATA, 'Microsoft', 'Windows Terminal')
+      sh.mkdir('-p', wtDir)
+      sh.ln('-f', lSource('windows-terminal/settings.json'), path.join(wtDir, 'settings.json'))
+
+      if (isWorkMachine) {
+        var fragmentsDir = path.join(process.env.LOCALAPPDATA, 'Microsoft', 'Windows Terminal', 'Fragments', 'dotfiles')
+        sh.mkdir('-p', fragmentsDir)
+        var workDir = aSource('windows-terminal/fragments/work')
+        fs.readdirSync(workDir)
+          .filter(function (file) { return file.endsWith('.json') })
+          .forEach(function (file) {
+            var filePath = path.join(workDir, file)
+            var profile = JSON.parse(fs.readFileSync(filePath, 'utf8')).profiles[0]
+            var startDir = profile && profile.startingDirectory
+            if (startDir) {
+              // expand %ENV_VAR% references
+              startDir = startDir.replace(/%([^%]+)%/g, function (_, k) {
+                return process.env[k] || ('%' + k + '%')
+              })
+            }
+            if (startDir && sh.test('-d', startDir)) {
+              sh.ln('-f', path.relative(process.cwd(), filePath), path.join(fragmentsDir, file))
+            }
+          })
       }
     }
   }

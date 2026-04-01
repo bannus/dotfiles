@@ -1,0 +1,12 @@
+{
+    "profiles": [
+        {
+            "commandline": "cmd.exe /k c:/src/Intune-UX-DeviceConfig/init.cmd",
+            "guid": "{f4e37b13-b510-42f0-9a7e-fc86339cf150}",
+            "icon": "c:/src/Intune-UX-DeviceConfig/.config/icon.ico",
+            "name": "UX-DeviceConfig",
+            "startingDirectory": "c:/src/Intune-UX-DeviceConfig",
+            "tabTitle": "UX-DeviceConfig"
+        }
+    ]
+}

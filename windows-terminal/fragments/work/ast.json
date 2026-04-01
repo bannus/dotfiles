@@ -1,0 +1,14 @@
+{
+    "profiles": [
+        {
+            "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & c:/src/ast/_BuildCommon/Scripts/Startup.cmd",
+            "guid": "{acff64f3-1b72-4fb5-8a8c-9183b362511a}",
+            "hidden": false,
+            "icon": "c:/src/ast/_BuildCommon/Shortcut.ico",
+            "name": "AST",
+            "opacity": 90,
+            "startingDirectory": "c:/src/ast",
+            "useAcrylic": true
+        }
+    ]
+}

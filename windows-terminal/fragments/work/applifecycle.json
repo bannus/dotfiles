@@ -1,0 +1,12 @@
+{
+    "profiles": [
+        {
+            "commandline": "cmd.exe /k c:/src/Intune-Svc-AppLifecycle/init.cmd",
+            "guid": "{c8213c6d-261f-495b-8e67-c28e547a2098}",
+            "hidden": false,
+            "icon": "c:/src/Intune-Svc-AppLifecycle/.config/icon.ico",
+            "name": "AppLifecycle",
+            "startingDirectory": "c:/src/Intune-Svc-AppLifecycle"
+        }
+    ]
+}

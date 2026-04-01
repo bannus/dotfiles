@@ -1,0 +1,15 @@
+{
+    "profiles": [
+        {
+            "commandline": "pwsh.exe -NoExit -Command \"cd %CBSYNC_ROOT%; ./init.ps1\"",
+            "guid": "{4ff9f75b-1d1d-436f-8455-8a961b0edd08}",
+            "hidden": false,
+            "icon": "c:/src/Intune-Svc-ChromebookSync/.config/icon.ico",
+            "name": "ChromebookSync",
+            "opacity": 90,
+            "startingDirectory": "%CBSYNC_ROOT%",
+            "tabTitle": "cbsync",
+            "useAcrylic": true
+        }
+    ]
+}

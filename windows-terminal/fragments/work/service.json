@@ -1,0 +1,12 @@
+{
+    "profiles": [
+        {
+            "commandline": "cmd.exe /k c:/src/Intune-Service/init.cmd",
+            "guid": "{45f70178-ee79-4540-94bc-0c496dd003cc}",
+            "hidden": false,
+            "icon": "c:/src/Intune-Service/.config/icon.ico",
+            "name": "Service (monolith)",
+            "startingDirectory": "c:/src/Intune-Service"
+        }
+    ]
+}

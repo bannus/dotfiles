@@ -1,0 +1,17 @@
+{
+    "profiles": [
+        {
+            "commandline": "cmd.exe /k c:/src/mam-2/_BuildCommon/Scripts/Startup.cmd & pwsh",
+            "font": {
+                "face": "Consolas"
+            },
+            "guid": "{1f2221bb-699e-4596-b09d-559dd6a704ca}",
+            "hidden": false,
+            "icon": "c:/src/mam-2/_BuildCommon/Shortcut.ico",
+            "name": "MAM 2",
+            "opacity": 90,
+            "startingDirectory": "c:/src/mam-2",
+            "useAcrylic": true
+        }
+    ]
+}

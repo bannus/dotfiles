@@ -1,0 +1,12 @@
+{
+    "profiles": [
+        {
+            "commandline": "cmd.exe /k c:/src/Intune-Svc-AndroidSync/init.cmd",
+            "guid": "{d851353e-94c8-4f5d-92d1-1387f9e12c47}",
+            "hidden": false,
+            "icon": "c:/src/Intune-Svc-AndroidSync/.config/icon.ico",
+            "name": "AndroidSync",
+            "startingDirectory": "c:/src/Intune-Svc-AndroidSync"
+        }
+    ]
+}

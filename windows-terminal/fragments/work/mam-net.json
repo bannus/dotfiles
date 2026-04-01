@@ -1,0 +1,14 @@
+{
+    "profiles": [
+        {
+            "commandline": "pwsh.exe -NoExit -command \"cd c:/src/mam-net/; ./init.ps1\"",
+            "guid": "{44c2a969-55ed-4b33-81ff-2b25c4e83e22}",
+            "hidden": false,
+            "icon": "c:/src/mam-net/.config/shortcut.ico",
+            "name": "MAM .NET",
+            "opacity": 90,
+            "startingDirectory": "c:/src/mam-net",
+            "useAcrylic": true
+        }
+    ]
+}

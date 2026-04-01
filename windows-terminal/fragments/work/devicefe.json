@@ -1,0 +1,15 @@
+{
+    "profiles": [
+        {
+            "commandline": "pwsh.exe -NoExit \"cd c:/src/Intune-Svc-DeviceFE; start-corext\"",
+            "guid": "{1a03f7ce-4d81-4aba-948b-b974563bc368}",
+            "hidden": false,
+            "icon": "c:/src/Intune-Svc-DeviceFE/.config/icon.ico",
+            "name": "DeviceFE",
+            "opacity": 90,
+            "startingDirectory": "c:/src/Intune-Svc-DeviceFE",
+            "tabTitle": "DeviceFE",
+            "useAcrylic": true
+        }
+    ]
+}

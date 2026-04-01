@@ -1,0 +1,12 @@
+{
+    "profiles": [
+        {
+            "commandline": "cmd.exe /k c:/src/Intune-UX-TenantSetup/init.cmd",
+            "guid": "{cc49dbbe-558a-4780-ab63-2bccb0b321d2}",
+            "icon": "c:/src/Intune-UX-TenantSetup/.config/icon.ico",
+            "name": "UX-TenantSetup",
+            "startingDirectory": "c:/src/Intune-UX-TenantSetup",
+            "tabTitle": "UX-TenantSetup"
+        }
+    ]
+}

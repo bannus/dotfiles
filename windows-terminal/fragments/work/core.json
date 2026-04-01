@@ -1,0 +1,17 @@
+{
+    "profiles": [
+        {
+            "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & pwsh -NoLogo -NoExit -F C:\\src\\core\\init.ps1",
+            "font": {
+                "face": "Consolas"
+            },
+            "guid": "{dee6733c-ae0c-474a-b2e9-fb7bdc54f15e}",
+            "hidden": false,
+            "icon": "c:/src/core/.config/Shortcut.ico",
+            "name": "Core",
+            "opacity": 90,
+            "startingDirectory": "c:/src/core",
+            "useAcrylic": true
+        }
+    ]
+}
