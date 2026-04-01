@@ -139,5 +139,9 @@ step([
     if (process.platform === 'darwin') {
       sh.ln('-f', lSource('iterm/config.plist'), aTarget('~/.iterm/com.googlecode.iterm2.plist'))
     }
+
+    // Copilot CLI
+    sh.mkdir('-p', aTarget('~/.copilot'))
+    sh.ln('-f', lSource('copilot/copilot-instructions.md'), aTarget('~/.copilot/copilot-instructions.md'))
   }
 ])
