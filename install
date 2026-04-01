@@ -174,29 +174,41 @@ step([
         ? wtStoreDir
         : path.join(process.env.LOCALAPPDATA, 'Microsoft', 'Windows Terminal')
       sh.mkdir('-p', wtDir)
-      sh.ln('-f', lSource('windows-terminal/settings.json'), path.join(wtDir, 'settings.json'))
+
+      var settings = JSON.parse(fs.readFileSync(aSource('windows-terminal/settings.json'), 'utf8'))
 
       if (isWorkMachine) {
-        var fragmentsDir = path.join(process.env.LOCALAPPDATA, 'Microsoft', 'Windows Terminal', 'Fragments', 'dotfiles')
-        sh.mkdir('-p', fragmentsDir)
         var workDir = aSource('windows-terminal/fragments/work')
+        var priorityOrder = ['MAM', 'MDM', 'AWT', 'AST', 'Core']
+        var priorityProfiles = []
+        var otherProfiles = []
         fs.readdirSync(workDir)
           .filter(function (file) { return file.endsWith('.json') })
           .forEach(function (file) {
-            var filePath = path.join(workDir, file)
-            var profile = JSON.parse(fs.readFileSync(filePath, 'utf8')).profiles[0]
+            var profile = JSON.parse(fs.readFileSync(path.join(workDir, file), 'utf8')).profiles[0]
             var startDir = profile && profile.startingDirectory
             if (startDir) {
-              // expand %ENV_VAR% references
               startDir = startDir.replace(/%([^%]+)%/g, function (_, k) {
                 return process.env[k] || ('%' + k + '%')
               })
             }
             if (startDir && sh.test('-d', startDir)) {
-              sh.ln('-f', path.relative(process.cwd(), filePath), path.join(fragmentsDir, file))
+              if (priorityOrder.indexOf(profile.name) !== -1) {
+                priorityProfiles.push(profile)
+              } else {
+                otherProfiles.push(profile)
+              }
             }
           })
+
+        priorityProfiles.sort(function (a, b) {
+          return priorityOrder.indexOf(a.name) - priorityOrder.indexOf(b.name)
+        })
+
+        settings.profiles.list = priorityProfiles.concat(settings.profiles.list).concat(otherProfiles)
       }
+
+      fs.writeFileSync(path.join(wtDir, 'settings.json'), JSON.stringify(settings, null, 4))
     }
   }
 ])

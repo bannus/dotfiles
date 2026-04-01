@@ -85,35 +85,35 @@
         {
             "command": {
                 "action": "newTab",
-                "profile": "{ef6c4f36-bec8-454a-a44e-8e9b93fb8194}"
+                "profile": "MAM"
             },
             "id": "User.newTab.MAM"
         },
         {
             "command": {
                 "action": "newTab",
-                "profile": "{92f6a13a-5ef5-4f7a-aa2d-f82825503a67}"
+                "profile": "MDM"
             },
             "id": "User.newTab.MDM"
         },
         {
             "command": {
                 "action": "newTab",
-                "profile": "{5ec6f37d-f982-5689-9fda-31549fae3d13}"
+                "profile": "AWT"
             },
             "id": "User.newTab.AWT"
         },
         {
             "command": {
                 "action": "newTab",
-                "profile": "{acff64f3-1b72-4fb5-8a8c-9183b362511a}"
+                "profile": "AST"
             },
             "id": "User.newTab.AST"
         },
         {
             "command": {
                 "action": "newTab",
-                "profile": "{dee6733c-ae0c-474a-b2e9-fb7bdc54f15e}"
+                "profile": "Core"
             },
             "id": "User.newTab.Core"
         }
