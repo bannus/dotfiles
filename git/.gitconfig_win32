@@ -3,5 +3,5 @@
 [merge]
     tool = kdiff3
 [mergetool "kdiff3"]
-    path = C:/Users/bavander/AppData/Local/KDiff3/bin/kdiff3.exe
+    cmd = sh ~/.dotfiles/windows-shell/Scripts/kdiff3.sh "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"
     trustExitCode = false
