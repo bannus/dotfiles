@@ -1,0 +1,174 @@
+#==============================================================================
+#=
+#= These aliases apply to all teams
+#= Please put team/developer specific alias in the defined sections below.
+#= This will make merging changes easier
+#=
+#==============================================================================
+
+#=== alias Commands
+reload=doskey /macrofile=%DEVELOPER_ROOT%\aliases.doskey
+reloadall=doskey /macrofile=%ENLISTMENT_ROOT%\CBT\aliases.doskey&doskey /macrofile=%ENLISTMENT_ROOT%\_BuildCommon\aliases.doskey&doskey /macrofile=%DEVELOPER_ROOT%\aliases.doskey
+
+#==============================================================================
+#= Add Team specific aliases below here
+#==============================================================================
+
+#==============================================================================
+#=== MSBuild
+mbr=%DEVELOPER_ROOT%\Scripts\msbuild.bat /m /p:Configuration=Release /p:SigningScenarioForRelease=Test /p:DeveloperBuild=true $
+mbd=%DEVELOPER_ROOT%\Scripts\msbuild.bat /m /p:Configuration=Debug /p:DeveloperBuild=true $*
+
+mbrr=%DEVELOPER_ROOT%\Scripts\msbuild.bat /m /p:Configuration=Release /p:SigningScenarioForRelease=Test /t:rebuild $*
+mbdr=%DEVELOPER_ROOT%\Scripts\msbuild.bat /m /p:Configuration=Debug /t:rebuild $*
+
+#=== Enlistment Dirs Commands
+binr=pushd "%ENLISTMENT_ROOT%\bin\AnyCPU\Release"
+bind=pushd "%ENLISTMENT_ROOT%\bin\AnyCPU\Debug"
+objr=pushd "%ENLISTMENT_ROOT%\obj\AnyCPU\Release"
+objd=pushd "%ENLISTMENT_ROOT%\obj\AnyCPU\Debug"
+
+#=== Android SDK Commands
+adb=%DEVELOPER_ROOT%\Scripts\adb.bat $*
+avd="%ANDROID_SDK_ROOT%\AVD Manager.exe" $*
+
+adbsd=adb -s %SPECIFIC_DEVICE% $*
+sd=set SPECIFIC_DEVICE=$*
+echosd=echo %SPECIFIC_DEVICE%
+
+pulllogsprivate=adb -s %SPECIFIC_DEVICE% pull /data/data/com.microsoft.windowsintune.companyportal/files/ $*
+pulllogs=adb -s %SPECIFIC_DEVICE% pull /sdcard/android/data/com.microsoft.windowsintune.companyportal/files/ $*
+
+#=== Android Studio / Gradle
+as=studio64.exe
+gr=gradlew assembleRelease
+gcr=gradlew clean assembleRelease
+gd=gradlew assembleDebug
+gcd=gradlew clean assembleDebug
+cs=gradlew --configure-on-demand checkstyle -PcheckForNewPackages=false & aowershell %DEVELOPER_ROOT%\Scripts\notify.ps1 -title \"Checkstyle complete\"
+
+#= Add Developer specific aliases below here
+#==============================================================================
+
+#==============================================================================
+#= the following line removes the '#' alias
+#=
+bavander=pushd %DEVELOPER_ROOT%
+mdm=pushd %ENLISTMENT_ROOT%\android\$*
+mdmt=pushd %ENLISTMENT_ROOT%\android\test\$*
+agent=pushd %ENLISTMENT_ROOT%\test\AppClient.Test.Agent$*
+internal=pushd %ENLISTMENT_ROOT%\product\AppClient.Internal$*
+external=pushd %ENLISTMENT_ROOT%\product\AppClient.External$*
+interface=pushd %ENLISTMENT_ROOT%\product\AppClient.Interface$*
+tapp1=pushd %ENLISTMENT_ROOT%\test\AppClient.Test.App1$*
+tapp2=pushd %ENLISTMENT_ROOT%\test\AppClient.Test.App2$*
+tapp3=pushd %ENLISTMENT_ROOT%\test\AppClient.Test.App3$*
+tapp4=pushd %ENLISTMENT_ROOT%\test\AppClient.Test.App4$*
+toapp1=pushd %ENLISTMENT_ROOT%\test\AppClient.TestOnly.App1$*
+fta=pushd %ENLISTMENT_ROOT%\unittest\FunctionalTestApp$*
+
+#devenv="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\devenv.exe" $*
+#apktool=%JAVA_HOME%\bin\java -jar %NUGET_PKG_ROOT%\ApkTool.2.2.2\apktool.jar $*
+apktool=%JAVA_HOME%\bin\java -jar %homepath%\downloads\apktool_2.6.1.jar $*
+ecndevx=\\sgdfile04\users\ECNDEVX\ecndevx.bat
+np=notepad2.exe $*
+vim=gvim -p --remote-tab-silent $*
+blog=gvim "%temp%\latest-build.log"
+
+astver=gvim %ANDROID_SHAREDTOOLS_ROOT%\packages\Microsoft.CM.Test.AndroidSharedTools\Microsoft.CM.Test.AndroidSharedTools.version.props
+newast=gvim -p %ANDROID_MDM_ROOT%\_BuildCommon\NuGet\toolset\packages.config %ANDROID_MDM_ROOT%\android\Test\build.props
+aliases=gvim %DEVELOPER_ROOT%\aliases.doskey
+ahk=gvim %HOMEDRIVE%\%HOMEPATH%\OneDrive\Documents\AutoHotKey.ahk
+ag=ag --path-to-agignore=%DEVELOPER_ROOT%\.agignore $*
+
+install=adb -s %SPECIFIC_DEVICE% install -t -r -d $* & powershell %DEVELOPER_ROOT%\Scripts\notify.ps1 -title \"Install complete\"
+#logcat=adb -s %SPECIFIC_DEVICE% logcat -v threadtime -d | start /b gvim -
+logcat=adb -s %SPECIFIC_DEVICE% logcat -v threadtime -d | gvim -
+glogcatd=adb -s %SPECIFIC_DEVICE% logcat -v threadtime -d > %TEMP%\glogcat.log & "C:\program files\glogg\glogg.exe" %TEMP%\glogcat.log
+glogcat="C:\program files\glogg\glogg.exe" %TEMP%\glogcat.log & adb -s %SPECIFIC_DEVICE% logcat -v threadtime > %TEMP%\glogcat.log
+klogcatd=adb -s %SPECIFIC_DEVICE% logcat -v threadtime -d > %TEMP%\klogcat.log & "C:\program files\klogg\klogg.exe" %TEMP%\klogcat.log
+klogcat="C:\program files\klogg\klogg.exe" %TEMP%\klogcat.log & adb -s %SPECIFIC_DEVICE% logcat -v threadtime > %TEMP%\klogcat.log
+clogcat=adb -s %SPECIFIC_DEVICE% logcat -c
+
+#= nuget packages
+sdkroot=pushd %ANDROID_SDK_ROOT%\$*
+asdk=explorer %ANDROID_SDK_ROOT%
+as=explorer %ANDROID_STUDIO_ROOT%
+rmlocals=rm -rf %NUGET_PKG_ROOT%\Microsoft.CM.Test.AndroidSharedTools.0.0.0 & rm -rf %NUGET_PKG_ROOT%\Microsoft.Intune.MAM.Internal.1.1.0-local-000 & rm -rf %NUGET_PKG_ROOT%\..\nuget-global-packages\Microsoft.CM.Test.AndroidSharedTools\0.0.0 & rm -rf %NUGET_PKG_ROOT%\..\nuget-global-packages\Microsoft.Intune.MAM.Internal\1.1.0-local-000
+
+#= ADB specific device
+adbsd=adb -s %SPECIFIC_DEVICE% $*
+sd=echo Current ADB device is [%SPECIFIC_DEVICE%]
+setsd=set SPECIFIC_DEVICE=$*
+getsd=FOR /F "tokens=*" %g IN ('adb.exe shell getprop ro.serialno') do (SET SPECIFIC_DEVICE=%g)
+nexus5=set SPECIFIC_DEVICE=052ab9560a66df4e
+5x=set SPECIFIC_DEVICE=020511de3ba422d0
+6p=set SPECIFIC_DEVICE=84B7N15A04003308
+nexus6=set SPECIFIC_DEVICE=ZX1G225SCJ
+nexus7=set SPECIFIC_DEVICE=078e7fd5
+#nexus7=set SPECIFIC_DEVICE=015d25646127fe0c
+note3=set SPECIFIC_DEVICE=919c54bb
+emu=set SPECIFIC_DEVICE=emulator-5554
+emu2=set SPECIFIC_DEVICE=emulator-5556
+galaxynexus=set SPECIFIC_DEVICE=014E238519006012
+#pixel=set SPECIFIC_DEVICE=FA71A0300050
+pixel2=set SPECIFIC_DEVICE=HT7AD1A02688
+j700m=set SPECIFIC_DEVICE=33004139220d23e7
+shrike=set SPECIFIC_DEVICE=4d0087fcb8169077
+s10=set SPECIFIC_DEVICE=R38M204KVVL
+pixel3=set SPECIFIC_DEVICE=93GAX07RFK
+pixel4a=set SPECIFIC_DEVICE=08041JEC217716
+pixel4xl=set SPECIFIC_DEVICE=9A311FFBA000GW
+pixel4=set SPECIFIC_DEVICE=9A241FFAZ0034T
+redmi=set SPECIFIC_DEVICE=18ebb5050704
+p30=set SPECIFIC_DEVICE=22X0220507008508
+
+#= ADB
+tab=adb shell input keyevent KEYCODE_TAB
+enter=adb shell input keyevent KEYCODE_ENTER
+devset=adb shell am start -a android.settings.APPLICATION_DEVELOPMENT_SETTINGS
+devtime=adb shell am start -a android.settings.DATE_SETTINGS
+accounts=adb shell am start -a android.settings.SYNC_SETTINGS
+adbsit=adb shell input text $*
+adbsite=adb shell input text $* & adb shell input keyevent KEYCODE_ENTER
+ls-msft=adb -s %SPECIFIC_DEVICE% shell pm list packages | grep -e microsoft -e azure | sed s/package://g
+rm-msft=adb -s %SPECIFIC_DEVICE% shell pm list packages | grep -e microsoft -e azure | sed s/package://g | xargs -P10 -l adb -s %SPECIFIC_DEVICE% uninstall
+rm-apps=adb -s %SPECIFIC_DEVICE% shell pm list packages | grep $* | sed s/package://g | xargs -P10 -l adb -s %SPECIFIC_DEVICE% uninstall
+rm-portal=adb -s %SPECIFIC_DEVICE% uninstall com.microsoft.windowsintune.companyportal
+clear-msft=adb -s %SPECIFIC_DEVICE% shell pm list packages | grep -e microsoft -e azure | sed s/package://g | xargs -P10 -l adb -s %SPECIFIC_DEVICE% shell pm clear
+clear-apps=adb -s %SPECIFIC_DEVICE% shell pm list packages | grep $* | sed s/package://g | xargs -P10 -l adb -s %SPECIFIC_DEVICE% shell pm clear
+debugwait=adb -s %SPECIFIC_DEVICE% shell am set-debug-app -w $*
+
+#= Play Store
+portal=store com.microsoft.windowsintune.companyportal
+teams=store com.microsoft.teams
+outlook=store com.microsoft.office.outlook
+onedrive=store com.microsoft.skydrive
+word=store com.microsoft.office.word
+excel=store com.microsoft.office.excel
+powerpoint=store com.microsoft.office.powerpoint
+manbro=store com.microsoft.intune.mam.managedbrowser
+teams=store com.microsoft.teams
+edge=store com.microsoft.emmx
+yammer=store com.yammer.v1
+launcher=store com.microsoft.launcher
+todo=store com.microsoft.todos
+kaizala=store com.microsoft.mobile.polymer
+sfb=store com.microsoft.office.lync15
+onenote=store com.microsoft.office.onenote
+sharepoint=store com.microsoft.sharepoint
+office=store com.microsoft.office.officehubrow
+
+drops=echo \\appvfile07\Private\Intune\AndroidMAM\develop && echo \\appvfile07\Private\Intune\AndroidSSP\develop
+mamdev=explorer \\appvfile07\Private\Intune\AndroidMAM\develop
+mamrel=explorer \\appvfile07\Private\Intune\AndroidMAM\master
+mdmdev=explorer \\appvfile07\Private\Intune\AndroidSSP\develop
+mdmrel=explorer \\appvfile07\Private\Intune\AndroidSSP\release
+
+#= Azure DevOps
+#bug="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --profile-directory="Default" https://msazure.visualstudio.com/Intune/_workitems/edit/$*
+#icm="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --profile-directory="Default" https://icm.ad.msft.net/imp/v3/incidents/details/$*/home
+#powerlift="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --profile-directory="Default" https://powerlift.acompli.net/#/incidents/$*
+#bug="C:\Program Files (x86)\Microsoft\Edge Dev\Application\msedge.exe" --profile-directory="Default" https://msazure.visualstudio.com/Intune/_workitems/edit/$*
+#icm="C:\Program Files (x86)\Microsoft\Edge Dev\Application\msedge.exe" --profile-directory="Default" https://icm.ad.msft.net/imp/v3/incidents/details/$*/home
+#powerlift="C:\Program Files (x86)\Microsoft\Edge Dev\Application\msedge.exe" --profile-directory="Default" https://powerlift.acompli.net/#/incidents/$*

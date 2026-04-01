@@ -143,5 +143,17 @@ step([
     // Copilot CLI
     sh.mkdir('-p', aTarget('~/.copilot'))
     sh.ln('-f', lSource('copilot/copilot-instructions.md'), aTarget('~/.copilot/copilot-instructions.md'))
+
+    // Windows shell (aliases, scripts, .agignore)
+    // Creates a directory junction at C:\Developer\bavander so that
+    // DEVELOPER_ROOT and existing Startup.cmd/PATH setup continue to work.
+    if (process.platform === 'win32') {
+      var devTarget = 'C:\\Developer\\bavander'
+      var wsSource = aSource('windows-shell')
+      if (!sh.test('-d', devTarget) && !sh.test('-L', devTarget)) {
+        sh.mkdir('-p', path.dirname(devTarget))
+        sh.exec('cmd /c mklink /J "' + devTarget + '" "' + wsSource + '"')
+      }
+    }
   }
 ])
