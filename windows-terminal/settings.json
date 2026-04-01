@@ -81,9 +81,44 @@
                 "input": "\u001b\r"
             },
             "id": "User.sendInput.8F63D3A9"
+        },
+        {
+            "command": {
+                "action": "newTab",
+                "profile": "{ef6c4f36-bec8-454a-a44e-8e9b93fb8194}"
+            },
+            "id": "User.newTab.MAM"
+        },
+        {
+            "command": {
+                "action": "newTab",
+                "profile": "{92f6a13a-5ef5-4f7a-aa2d-f82825503a67}"
+            },
+            "id": "User.newTab.MDM"
+        },
+        {
+            "command": {
+                "action": "newTab",
+                "profile": "{5ec6f37d-f982-5689-9fda-31549fae3d13}"
+            },
+            "id": "User.newTab.AWT"
+        },
+        {
+            "command": {
+                "action": "newTab",
+                "profile": "{acff64f3-1b72-4fb5-8a8c-9183b362511a}"
+            },
+            "id": "User.newTab.AST"
+        },
+        {
+            "command": {
+                "action": "newTab",
+                "profile": "{dee6733c-ae0c-474a-b2e9-fb7bdc54f15e}"
+            },
+            "id": "User.newTab.Core"
         }
     ],
-    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "defaultProfile":"{574e775e-4f2a-5b96-ac1e-a2962a402336}",
     "keybindings": [
         {
             "id": "User.switchToTab.D7681B66",
@@ -132,6 +167,26 @@
         {
             "id": "User.switchToTab.ED268D78",
             "keys": "ctrl+9"
+        },
+        {
+            "id": "User.newTab.MAM",
+            "keys": "ctrl+shift+1"
+        },
+        {
+            "id": "User.newTab.MDM",
+            "keys": "ctrl+shift+2"
+        },
+        {
+            "id": "User.newTab.AWT",
+            "keys": "ctrl+shift+3"
+        },
+        {
+            "id": "User.newTab.AST",
+            "keys": "ctrl+shift+4"
+        },
+        {
+            "id": "User.newTab.Core",
+            "keys": "ctrl+shift+5"
         }
     ],
     "newTabMenu": [
