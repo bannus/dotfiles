@@ -1,7 +1,7 @@
 {
     "profiles": [
         {
-            "commandline": "cmd.exe /k %ConEmuDir%/../init.bat & pwsh -NoLogo -NoExit -F C:\\src\\core\\init.ps1",
+            "commandline": "pwsh -NoLogo -NoExit -F C:\\src\\core\\init.ps1",
             "font": {
                 "face": "Consolas"
             },
