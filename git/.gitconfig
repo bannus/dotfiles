@@ -11,7 +11,7 @@
   prompt = false
 [core]
   excludesfile = ~/.dotfiles/git/.gitignore_global
-  editor = gvim
+  editor = ${GIT_EDITOR:-${VISUAL:-${EDITOR:-gvim}}}
   autocrlf = input
 [alias]
   # shortcuts
@@ -44,8 +44,8 @@
 
   # scripts
   ff = "!git checkout --quiet --detach; \
-    git fetch origin master:master; \
-    git fetch origin develop:develop; \
+    git fetch origin main:main 2>/dev/null || git fetch origin master:master 2>/dev/null; \
+    git fetch origin develop:develop 2>/dev/null; \
     git checkout --quiet -"
   # don't reset without first committing, just in case...
   wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
@@ -58,8 +58,7 @@
   filename = white bold
   linenumber = yellow
   separator = white
-[merge]
-  ;ff = only
+
 [status]
   short = true
   branch = true
@@ -68,8 +67,9 @@
 [rerere]
   enabled = 1
 [push]
-  # push current branch to branch of same name on remote
-  default = current
+  # push current branch to branch of same name on remote, but refuse if
+  # upstream tracking branch has a different name (safer than 'current')
+  default = simple
 [gui]
   tabsize = 4
   commitmsgwidth = 120

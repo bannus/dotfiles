@@ -155,6 +155,9 @@ step([
     sh.mkdir('-p', aTarget('~/.copilot'))
     sh.ln('-f', lSource('copilot/copilot-instructions.md'), aTarget('~/.copilot/copilot-instructions.md'))
 
+    // EditorConfig
+    sh.ln('-f', lSource('.editorconfig'), aTarget('~/.editorconfig'))
+
     // Windows shell (aliases, scripts, .agignore)
     // Creates a directory junction at C:\Developer\bavander so that
     // DEVELOPER_ROOT and existing Startup.cmd/PATH setup continue to work.

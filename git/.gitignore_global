@@ -1,1 +1,24 @@
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Editor backups / swap files
+*.swp
+*.swo
+*~
+*.orig
+
+# Secrets / local environment
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+out/
