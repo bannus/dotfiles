@@ -15,6 +15,11 @@
 ## Git
 
 - **Never use `git add -A` or `git add .`** — these stage the entire working tree including unrelated uncommitted changes. Always stage specific files with `git add <file1> <file2> ...`.
+- Use **Markdown** formatting (inline code, bullet lists, etc.) in commit message bodies. Do **not** hard-wrap lines — let the renderer handle line breaks.
+
+## Testing
+
+- Don't remove or weaken existing tests unless explicitly asked.
 
 ## Production Impact
 
