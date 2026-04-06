@@ -24,3 +24,7 @@
 ## Production Impact
 
 - When proposing changes to data formats, storage, or encryption, proactively assess backward compatibility and migration impact before committing.
+
+## Azure DevOps
+
+- Unless I specify otherwise, create ADO work items in Area Path `Intune\Mgmt\Android Mobility\MAM Android`.
