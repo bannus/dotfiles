@@ -35,6 +35,10 @@ function objd { Push-Location "$env:ENLISTMENT_ROOT\obj\AnyCPU\Debug" }
 
 #=== Android SDK Commands
 function adb {
+    if (-not $env:ANDROID_SDK_ROOT) {
+        Write-Host "ANDROID_SDK_ROOT is not set. Install the Android SDK or set the variable manually." -ForegroundColor Red
+        return
+    }
     $adbExe = "$env:ANDROID_SDK_ROOT\platform-tools\adb.exe"
 
     # Auto-detect device if not set

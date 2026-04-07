@@ -19,6 +19,26 @@ if (-not (Get-Command oh-my-posh -ErrorAction SilentlyContinue)) {
     $env:PATH = [System.Environment]::GetEnvironmentVariable('PATH', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('PATH', 'User')
 }
 
+# Auto-detect ANDROID_SDK_ROOT if not set
+if (-not $env:ANDROID_SDK_ROOT) {
+    $candidates = @(
+        "$env:LOCALAPPDATA\Android\Sdk",
+        "$env:USERPROFILE\AppData\Local\Android\Sdk",
+        "C:\Android\Sdk",
+        "C:\Android\android-sdk"
+    )
+    # Also check the most recently modified Intune Android SDK NuGet package
+    $nugetSdk = Get-ChildItem "C:\NuGetPackages" -Filter "microsoft.intune.androidsdk.universal.*" -Directory -ErrorAction SilentlyContinue |
+        Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName
+    if ($nugetSdk) { $candidates = @($nugetSdk) + $candidates }
+
+    $detected = $candidates | Where-Object { Test-Path "$_\platform-tools\adb.exe" } | Select-Object -First 1
+    if ($detected) {
+        $env:ANDROID_SDK_ROOT = $detected
+        Write-Host "ANDROID_SDK_ROOT auto-detected: $detected" -ForegroundColor DarkGray
+    }
+}
+
 oh-my-posh init --config 'stelbent.minimal' pwsh | Invoke-Expression
 
 # Set DEVELOPER_ROOT and add Scripts to PATH
