@@ -20,4 +20,11 @@ if (-not (Get-Command oh-my-posh -ErrorAction SilentlyContinue)) {
 }
 
 oh-my-posh init --config 'stelbent.minimal' pwsh | Invoke-Expression
+
+# Set DEVELOPER_ROOT and add Scripts to PATH
+$env:DEVELOPER_ROOT = "C:\developer\bavander"
+if ($env:PATH -notlike "*$env:DEVELOPER_ROOT\Scripts*") {
+    $env:PATH = "$env:DEVELOPER_ROOT\Scripts;$env:PATH"
+}
+
 . "C:\developer\bavander\aliases.ps1"
