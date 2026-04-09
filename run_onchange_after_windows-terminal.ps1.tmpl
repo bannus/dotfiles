@@ -3,8 +3,9 @@ exit 0
 {{ else -}}
 # Settings hash: {{ include "windows-terminal/settings.json" | sha256sum }}
 # Is work machine: {{ .isWorkMachine }}
-{{ range (glob "windows-terminal/fragments/work/*") -}}
-# Fragment: {{ . }} hash: {{ include . | sha256sum }}
+{{ range (glob (joinPath .chezmoi.sourceDir "windows-terminal" "fragments" "work" "*")) -}}
+{{ $rel := trimPrefix (printf "%s/" $.chezmoi.sourceDir) . -}}
+# Fragment: {{ $rel }} hash: {{ include $rel | sha256sum }}
 {{ end -}}
 
 $ErrorActionPreference = "Stop"

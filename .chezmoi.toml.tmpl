@@ -4,3 +4,7 @@ sourceDir = {{ joinPath .chezmoi.homeDir ".dotfiles" | quote }}
 
 [data]
     isWorkMachine = {{ $isWorkMachine }}
+{{ if eq .chezmoi.os "windows" -}}
+[interpreters.sh]
+    command = 'C:\Program Files\Git\bin\bash.exe'
+{{ end -}}

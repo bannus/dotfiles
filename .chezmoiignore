@@ -17,6 +17,8 @@ windows-shell
 windows-shell/**
 android-studio
 android-studio/**
+vim
+vim/**
 wox
 wox/**
 
@@ -35,7 +37,6 @@ package.json
 package-lock.json
 .jshintrc
 .gitmodules
-.editorconfig
 
 # Platform-specific exclusions
 {{ if ne .chezmoi.os "darwin" }}

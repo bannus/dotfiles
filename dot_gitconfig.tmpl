@@ -8,3 +8,8 @@
 [include]
   path = .dotfiles/git/.gitconfig_win32
 {{ end -}}
+{{ if and (eq .chezmoi.os "windows") .isWorkMachine -}}
+[credential "azrepos:org/msazure"]
+	azureAuthority = https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47
+	username = {{ env "USERNAME" }}@microsoft.com
+{{ end -}}
