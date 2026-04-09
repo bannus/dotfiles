@@ -1,0 +1,7 @@
+source ~/.dotfiles/bash/.bashrc
+{{ if eq .chezmoi.os "darwin" -}}
+source ~/.dotfiles/bash/.bashrc_darwin
+{{ end -}}
+{{ if eq .chezmoi.os "windows" -}}
+source ~/.dotfiles/bash/.bashrc_win32
+{{ end -}}

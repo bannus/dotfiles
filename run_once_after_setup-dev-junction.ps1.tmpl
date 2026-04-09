@@ -1,0 +1,31 @@
+{{ if ne .chezmoi.os "windows" -}}
+exit 0
+{{ else -}}
+$devTarget = "C:\Developer\bavander"
+$wsSource = {{ joinPath .chezmoi.sourceDir "windows-shell" | quote }}
+
+# Check if junction already exists and points to the correct location
+if (Test-Path $devTarget) {
+    $item = Get-Item $devTarget -Force
+    if ($item.LinkType -eq "Junction") {
+        $resolvedTarget = (Get-Item $devTarget -Force).Target
+        if ($resolvedTarget -contains $wsSource) {
+            Write-Host "Junction $devTarget already points to $wsSource"
+            exit 0
+        }
+    }
+    # Wrong target or not a junction — remove and recreate
+    Write-Host "Removing stale $devTarget..."
+    Remove-Item $devTarget -Recurse -Force
+}
+
+# Create parent directory if needed
+$parent = Split-Path $devTarget -Parent
+if (-not (Test-Path $parent)) {
+    New-Item -ItemType Directory -Path $parent -Force | Out-Null
+}
+
+# Create junction (no special privileges required)
+cmd /c mklink /J $devTarget $wsSource
+Write-Host "Created junction $devTarget -> $wsSource"
+{{ end -}}

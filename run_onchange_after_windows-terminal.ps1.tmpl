@@ -1,0 +1,68 @@
+{{ if ne .chezmoi.os "windows" -}}
+exit 0
+{{ else -}}
+# Settings hash: {{ include "windows-terminal/settings.json" | sha256sum }}
+# Is work machine: {{ .isWorkMachine }}
+{{ range (glob "windows-terminal/fragments/work/*") -}}
+# Fragment: {{ . }} hash: {{ include . | sha256sum }}
+{{ end -}}
+
+$ErrorActionPreference = "Stop"
+$sourceDir = {{ .chezmoi.sourceDir | quote }}
+
+# Determine Windows Terminal settings directory
+$wtStoreDir = Join-Path $env:LOCALAPPDATA "Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"
+if (Test-Path $wtStoreDir) {
+    $wtDir = $wtStoreDir
+} else {
+    $wtDir = Join-Path $env:LOCALAPPDATA "Microsoft\Windows Terminal"
+}
+New-Item -ItemType Directory -Path $wtDir -Force | Out-Null
+
+# Read base settings
+$settingsPath = Join-Path $sourceDir "windows-terminal\settings.json"
+$settings = Get-Content $settingsPath -Raw | ConvertFrom-Json
+
+{{ if .isWorkMachine -}}
+# Merge work profile fragments
+$workDir = Join-Path $sourceDir "windows-terminal\fragments\work"
+$priorityOrder = @('MAM', 'MDM', 'AWT', 'AST', 'Core')
+$priorityProfiles = [System.Collections.ArrayList]::new()
+$otherProfiles = [System.Collections.ArrayList]::new()
+
+Get-ChildItem $workDir -Filter "*.json" | ForEach-Object {
+    $fragment = Get-Content $_.FullName -Raw | ConvertFrom-Json
+    $profile = $fragment.profiles[0]
+    if (-not $profile) { return }
+
+    $startDir = $profile.startingDirectory
+    if ($startDir) {
+        # Expand %VAR% environment variable references
+        $startDir = [regex]::Replace($startDir, '%([^%]+)%', {
+            param($m)
+            $val = [Environment]::GetEnvironmentVariable($m.Groups[1].Value)
+            if ($val) { $val } else { $m.Value }
+        })
+    }
+
+    if ($startDir -and (Test-Path $startDir)) {
+        if ($priorityOrder -contains $profile.name) {
+            [void]$priorityProfiles.Add($profile)
+        } else {
+            [void]$otherProfiles.Add($profile)
+        }
+    }
+}
+
+# Sort priority profiles by defined order
+$priorityProfiles = @($priorityProfiles | Sort-Object { $priorityOrder.IndexOf($_.name) })
+
+# Merge: priority profiles -> base profiles -> other profiles
+$settings.profiles.list = @($priorityProfiles) + @($settings.profiles.list) + @($otherProfiles)
+{{ end -}}
+
+# Write merged settings
+$json = $settings | ConvertTo-Json -Depth 100
+Set-Content -Path (Join-Path $wtDir "settings.json") -Value $json -Encoding UTF8
+Write-Host "Windows Terminal settings deployed to $wtDir"
+{{ end -}}

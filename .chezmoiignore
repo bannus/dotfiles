@@ -1,0 +1,48 @@
+# Library directories (source files referenced by templates, not deployed to ~)
+bash
+bash/**
+git
+git/**
+ssh
+ssh/**
+copilot
+copilot/**
+iterm
+iterm/**
+npm
+npm/**
+windows-terminal
+windows-terminal/**
+windows-shell
+windows-shell/**
+android-studio
+android-studio/**
+wox
+wox/**
+
+# Build artifacts and Node.js tooling
+node_modules
+node_modules/**
+compiled
+compiled/**
+
+# Repository meta-files
+README.md
+TODO.md
+install
+install.orig
+package.json
+package-lock.json
+.jshintrc
+.gitmodules
+.editorconfig
+
+# Platform-specific exclusions
+{{ if ne .chezmoi.os "darwin" }}
+.iterm
+.iterm/**
+{{ end }}
+{{ if ne .chezmoi.os "windows" }}
+run_onchange_after_windows-terminal.ps1
+run_once_after_setup-dev-junction.ps1
+{{ end }}

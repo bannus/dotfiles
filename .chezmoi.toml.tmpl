@@ -1,0 +1,6 @@
+{{- $isWorkMachine := promptBoolOnce . "isWorkMachine" "Is this a work machine" -}}
+
+sourceDir = {{ joinPath .chezmoi.homeDir ".dotfiles" | quote }}
+
+[data]
+    isWorkMachine = {{ $isWorkMachine }}

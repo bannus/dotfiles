@@ -1,52 +1,77 @@
 # dotfiles
 
-Completely cross-platform dotfiles, including Windows!
+Cross-platform dotfiles managed by [chezmoi](https://www.chezmoi.io/), supporting Windows, macOS, and Linux.
 
-## Why would I want my dotfiles on GitHub?
+## Prerequisites
 
-Please see [GitHub ❤ ~/](http://dotfiles.github.io/), as they have answered
-this question as well as anyone.
+- [chezmoi](https://www.chezmoi.io/install/) — install with `winget install twpayne.chezmoi` (Windows), `brew install chezmoi` (macOS), or see [install docs](https://www.chezmoi.io/install/)
+- [Git](https://git-scm.com/) — required for cloning and submodule support
+- **Windows only**: [Developer Mode](https://learn.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) must be enabled (Settings → System → For developers) so chezmoi can create symlinks
 
-## Why support Windows?
+## Installation
 
-This is a much better question, and the answer goes beyond being cross-platform
-to being cross-industry. The fact of the matter is that influential, top-class
-game development is largely done on Windows even though influential, top-class
-web development is largely done on OS X.
+### Fresh machine
 
-Though not the norm, I use the majority of these tools to develop games in the
-same way I use them to develop web applications. I don't feel like
-context-switching between these two industries should require me to
-context-switch between two sets of tools (or configurations thereof), hence
-the effort to make these dotfiles cross-platform.
+```sh
+chezmoi init --source ~/.dotfiles <your-fork-url>
+chezmoi apply
+```
 
-## Usage & Installation
+### Existing clone at `~/.dotfiles`
 
- 1. Install node.js.
- 1. [Fork the dotfiles.](https://github.com/Schoonology/dotfiles/fork)
- 1. Clone your fork somewhere on the same virtual drive as your home folder. I
-    recommend `~/.dotfiles`. Use `git clone --recursive`. If you forget, run
-    `git submodule init` and `git submodule update` after cloning.
- 1. Run the install script (`node install`).
- 1. Follow the instructions at `https://github.com/bannus/vimrc`. You should skip
-    cloning the vimrc repo and creating the symlink.
- 1. Edit your dotfiles, especially `.gitconfig`, to match your name, email,
-    machine-specific settings, etc.
- 1. Commit your changes to your fork.
- 1. Congratulations, your dotfiles are now safe on GitHub!
+```sh
+chezmoi init --source ~/.dotfiles
+chezmoi apply
+```
 
-One note on changes made to your fork. _Please don't include sensitive
-information like passwords and keys!_ If you notice, the `ssh` folder includes
-a very useful `.ssh/config` file. Notice that the actual keys and usernames are
-_not_ present. That's one thing you _don't_ want to share with the world.
+During `chezmoi init`, you'll be prompted:
+- **Is this a work machine?** — answers yes/no to control whether work-specific Windows Terminal profiles are merged into your settings.
 
-### Notes for Windows users
+## What gets deployed
 
- 1. Ensure that `git` is available to the `install` script for `npm` to work
-    correctly (required).
- 1. You may have to run the `install` script as Administrator due to symlink
-    permissions being unusual by default. A caveat of running `node` in the
-    Administrator shell is that you'll need to manually set an additional
-    environment variable. From the shell, `cd` into your home directory, then
-    run `set HOME = %CD%`. At this point, the `install` script should work
-    normally.
+| Target | Source | Method |
+|---|---|---|
+| `~/.bashrc` | `bash/.bashrc` + platform variant | Template (source lines) |
+| `~/.gitconfig` | `git/.gitconfig` + platform variant | Template (include directives) |
+| `~/.vimrc`, `~/_vimrc` | `vim/.vimrc` | Template (source line) |
+| `~/_ideavimrc` | `vim/.ideavimrc` | Template (source line) |
+| `~/.vim`, `~/vimfiles` | `vim/` (submodule) | Symlink |
+| `~/.ssh/config` | `ssh/config` | Symlink |
+| `~/.editorconfig` | `.editorconfig` | Symlink |
+| `~/.copilot/copilot-instructions.md` | `copilot/copilot-instructions.md` | Symlink |
+| `~/.iterm/com.googlecode.iterm2.plist` | `iterm/config.plist` | Symlink (macOS only) |
+| Windows Terminal `settings.json` | `windows-terminal/settings.json` + fragments | `run_onchange_` script |
+| `C:\Developer\bavander` | `windows-shell/` | Junction (`run_once_` script, Windows only) |
+
+## Daily workflow
+
+```sh
+# Edit a dotfile source and deploy
+chezmoi edit ~/.bashrc        # opens the template in your editor
+chezmoi apply                 # deploys all changes
+
+# Or edit the source directly
+cd ~/.dotfiles
+# ... edit files ...
+chezmoi apply
+
+# See what would change without applying
+chezmoi diff
+```
+
+## Directory structure
+
+- `bash/`, `git/`, `ssh/`, `copilot/`, `iterm/`, `npm/` — Config source files (referenced by templates, not deployed directly)
+- `vim/` — Vim configuration (git submodule → [bannus/vimrc](https://github.com/bannus/vimrc))
+- `windows-terminal/` — Base settings + work profile fragments
+- `windows-shell/` — PowerShell profile, aliases, scripts (exposed via junction at `C:\Developer\bavander`)
+- `android-studio/`, `wox/` — App-specific configs
+- `dot_*.tmpl`, `symlink_*.tmpl`, `_*.tmpl` — chezmoi templates and symlinks
+- `run_*` — chezmoi run scripts (submodule init, WT merge, junction setup)
+- `.chezmoi.toml.tmpl` — chezmoi configuration template
+- `.chezmoiignore` — Prevents library dirs from being deployed to `~`
+
+## Notes
+
+- **Don't include sensitive information** like passwords and keys! SSH keys and secrets should remain outside this repository.
+- On a work machine, Windows Terminal profiles are dynamically merged from `windows-terminal/fragments/work/`. Only fragments whose `startingDirectory` exists on disk are included.
