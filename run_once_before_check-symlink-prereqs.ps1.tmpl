@@ -1,0 +1,14 @@
+{{ if ne .chezmoi.os "windows" -}}
+exit 0
+{{ else -}}
+$devMode = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" -Name AllowDevelopmentWithoutDevLicense -ErrorAction SilentlyContinue).AllowDevelopmentWithoutDevLicense
+if ($devMode -ne 1) {
+    Write-Host "ERROR: Windows Developer Mode is not enabled." -ForegroundColor Red
+    Write-Host ""
+    Write-Host "chezmoi needs Developer Mode to create symlinks."
+    Write-Host "Enable it in: Settings -> System -> For developers"
+    Write-Host ""
+    Write-Host "Then re-run: chezmoi apply"
+    exit 1
+}
+{{ end -}}
