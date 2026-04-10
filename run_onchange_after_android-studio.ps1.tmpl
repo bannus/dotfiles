@@ -1,0 +1,47 @@
+{{ if eq .chezmoi.os "windows" -}}
+# Android Studio config deployment
+# Copies custom keymaps, colors, and options to all installed AS versions.
+#
+# Source file hashes (change triggers re-run):
+{{ range (glob (joinPath .chezmoi.sourceDir "android-studio/config/*/*")) -}}
+# {{ . | trimPrefix (print $.chezmoi.sourceDir "/") }}: {{ include . | sha256sum }}
+{{ end -}}
+
+$sourceConfig = Join-Path {{ .chezmoi.sourceDir | quote }} "android-studio\config"
+$googleDir = Join-Path $env:APPDATA "Google"
+
+if (-not (Test-Path $googleDir)) {
+    Write-Host "No Android Studio installations found at $googleDir"
+    exit 0
+}
+
+$asRoots = Get-ChildItem $googleDir -Directory -Filter "AndroidStudio*" -ErrorAction SilentlyContinue
+
+if ($asRoots.Count -eq 0) {
+    Write-Host "No Android Studio installations found"
+    exit 0
+}
+
+# Deploy each config subdirectory (keymaps, colors, options)
+foreach ($root in $asRoots) {
+    Write-Host "Deploying configs to $($root.Name)..."
+
+    foreach ($subdir in @("keymaps", "colors", "options")) {
+        $sourceDir = Join-Path $sourceConfig $subdir
+        if (-not (Test-Path $sourceDir)) { continue }
+
+        $targetDir = Join-Path $root.FullName $subdir
+        if (-not (Test-Path $targetDir)) {
+            New-Item -ItemType Directory -Path $targetDir -Force | Out-Null
+        }
+
+        # Copy each file individually (don't clobber files not in our repo)
+        Get-ChildItem $sourceDir -File | ForEach-Object {
+            Copy-Item $_.FullName (Join-Path $targetDir $_.Name) -Force
+            Write-Host "  $subdir/$($_.Name)"
+        }
+    }
+}
+
+Write-Host "Android Studio config deployment complete."
+{{ end -}}
