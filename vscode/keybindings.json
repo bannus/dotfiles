@@ -56,5 +56,11 @@
   {
     "key": "ctrl+shift+a",
     "command": "workbench.action.showCommands"
+  },
+
+  // --- Last Edit Location: Ctrl+Shift+Backspace (matches Android Studio) ---
+  {
+    "key": "ctrl+shift+backspace",
+    "command": "workbench.action.navigateToLastEditLocation"
   }
 ]
