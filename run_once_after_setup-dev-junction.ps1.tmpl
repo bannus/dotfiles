@@ -14,8 +14,15 @@ if (Test-Path $devTarget) {
             exit 0
         }
     }
-    # Wrong target or not a junction — remove and recreate
-    Write-Host "Removing stale $devTarget..."
+    # Wrong target or not a junction — prompt before replacing
+    $existing = if ($item.LinkType) { "$($item.LinkType) -> $($item.Target)" } else { "directory/file" }
+    Write-Host "$devTarget exists as $existing"
+    Write-Host "Expected junction to $wsSource"
+    $answer = Read-Host "Replace it? [y/N]"
+    if ($answer -notmatch '^y(es)?$') {
+        Write-Host "Skipping — aliases.ps1 may not be found at $devTarget"
+        exit 0
+    }
     Remove-Item $devTarget -Recurse -Force
 }
 
