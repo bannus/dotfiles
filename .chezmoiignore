@@ -17,6 +17,8 @@ windows-shell
 windows-shell/**
 android-studio
 android-studio/**
+vscode
+vscode/**
 vim
 vim/**
 wox
@@ -46,5 +48,6 @@ package-lock.json
 {{ if ne .chezmoi.os "windows" }}
 run_onchange_after_windows-terminal.ps1
 run_onchange_after_android-studio.ps1
+run_onchange_after_vscode.ps1
 run_once_after_setup-dev-junction.ps1
 {{ end }}

@@ -1,0 +1,18 @@
+{{ if eq .chezmoi.os "windows" -}}
+# VS Code keybindings deployment
+#
+# Source file hash (change triggers re-run):
+# {{ joinPath .chezmoi.sourceDir "vscode/keybindings.json" | include | sha256sum }}
+
+$source = Join-Path {{ .chezmoi.sourceDir | quote }} "vscode\keybindings.json"
+$targetDir = Join-Path $env:APPDATA "Code\User"
+
+if (-not (Test-Path $targetDir)) {
+    Write-Host "VS Code user directory not found at $targetDir — skipping"
+    exit 0
+}
+
+$target = Join-Path $targetDir "keybindings.json"
+Copy-Item $source $target -Force
+Write-Host "Deployed VS Code keybindings to $target"
+{{ end -}}

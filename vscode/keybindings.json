@@ -1,0 +1,48 @@
+[
+  // --- Find Usages: F2 (matches Android Studio) ---
+  {
+    "key": "f2",
+    "command": "references-view.findReferences",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "f2",
+    "command": "-editor.action.rename",
+    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+  },
+
+  // --- Go to Definition: F3 (matches Android Studio) ---
+  {
+    "key": "f3",
+    "command": "editor.action.revealDefinition",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "f3",
+    "command": "-editor.action.nextMatchFindAction",
+    "when": "editorFocus"
+  },
+
+  // --- Go to Implementation: Shift+F3 (matches Android Studio) ---
+  {
+    "key": "shift+f3",
+    "command": "editor.action.goToImplementation",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+f3",
+    "command": "-editor.action.previousMatchFindAction",
+    "when": "editorFocus"
+  },
+
+  // --- Call Hierarchy: Ctrl+Shift+H ---
+  {
+    "key": "ctrl+shift+h",
+    "command": "references-view.showCallHierarchy",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+h",
+    "command": "-workbench.action.replaceInFiles"
+  }
+]
