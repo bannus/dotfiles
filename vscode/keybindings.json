@@ -44,5 +44,17 @@
   {
     "key": "ctrl+shift+h",
     "command": "-workbench.action.replaceInFiles"
+  },
+
+  // --- Search Everywhere: Ctrl+T (matches Android Studio) ---
+  {
+    "key": "ctrl+t",
+    "command": "workbench.action.quickOpen"
+  },
+
+  // --- Run Action: Ctrl+Shift+A (matches Android Studio) ---
+  {
+    "key": "ctrl+shift+a",
+    "command": "workbench.action.showCommands"
   }
 ]
