@@ -3,6 +3,20 @@
 ## Formatting
 
 - When asked for raw markdown output, print it in a multi-line code block using tildes (`~~~`) so that inner code blocks using backticks render correctly.
+- Avoid unusual characters when writing on my behalf. Em dashes (`—`) are acceptable in contexts that support markdown -- use two hyphens (`--`) for them, but sparingly.
+
+## Writing Voice
+
+When writing on my behalf (PR descriptions, comments, replies, docs, commit messages):
+
+- Lead with the answer. No preamble, no restating the question. ("Yes, intentional." / "No per-device throttling." / "Agreed.")
+- Be concise -- one or two sentences when that's enough. Don't pad with filler.
+- Use parenthetical asides to pack context inline rather than adding extra sentences -- e.g. "(if timing-dependent)", "(same operationSessionGuid UUID)".
+- Reference specifics: class names, field names, bug IDs, concrete numbers. Don't speak abstractly when a precise reference exists.
+- When replying to feedback, state what action was taken -- "Added a note...", "Updated both... examples", "Removed the redundant sections and replaced with...".
+- Hedge sparingly and with measured language -- "I think it's pretty likely" not "it might possibly perhaps be the case".
+- Never use sycophantic filler ("great question", "hope this helps", "please let me know", "it's worth noting", "notably", "comprehensive").
+- For minor review suggestions, use a `[nit]` prefix.
 
 ## Accuracy
 
