@@ -30,6 +30,7 @@ When writing on my behalf (PR descriptions, comments, replies, docs, commit mess
 
 - **Never use `git add -A` or `git add .`** — these stage the entire working tree including unrelated uncommitted changes. Always stage specific files with `git add <file1> <file2> ...`.
 - Use **Markdown** formatting (inline code, bullet lists, etc.) in commit message bodies. Do **not** hard-wrap lines — let the renderer handle line breaks.
+- **Never pass commit messages inline with `git commit -m`** — PowerShell uses backtick as its escape character, so backticks, newlines, and blank-line paragraph breaks all get mangled. Instead, write the message to a temp file with the `create` tool (which writes content literally), then commit with `git commit -F <file>`, then delete the temp file.
 
 ## Testing
 
@@ -42,3 +43,4 @@ When writing on my behalf (PR descriptions, comments, replies, docs, commit mess
 ## Azure DevOps
 
 - Unless I specify otherwise, create ADO work items in Area Path `Intune\Mgmt\Android Mobility\MAM Android`.
+- My primary ADO organization URL is https://dev.azure.com/msazure/
