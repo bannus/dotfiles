@@ -317,17 +317,7 @@ function ecndevx { & "\\sgdfile04\users\ECNDEVX\ecndevx.bat" }
 #==============================================================================
 #= Work URL launchers
 #==============================================================================
-function bug      { param([string]$Id)    Start-Process "https://dev.azure.com/msazure/Intune/_workitems/edit/$Id" }
+# URL launchers extracted to standalone scripts in Scripts\ so they work
+# in non-interactive contexts (e.g., Copilot CLI `!bug 12345`):
+#   bug, icm, powerlift, pr, mdmpr, mam, enghub
 Remove-Item Alias:icm -Force -ErrorAction SilentlyContinue  # frees name from built-in Invoke-Command alias
-function icm      { param([string]$Id)    Start-Process "https://portal.microsofticm.com/imp/v3/incidents/details/$Id/home" }
-function powerlift { param([string]$Id)   Start-Process "https://powerlift.acompli.net/#/incidents/$Id" }
-function pr       { param([string]$Id)    Start-Process "https://dev.azure.com/msazure/Intune/_git/xplat-Android-MAM/pullrequest/$Id" }
-function mdmpr    { param([string]$Id)    Start-Process "https://dev.azure.com/msazure/Intune/_git/xplat-Android-MDM/pullrequest/$Id" }
-function mam      {
-    $q = [uri]::EscapeDataString($args -join ' ')
-    Start-Process "https://dev.azure.com/msazure/Intune/_search?text=$q&type=workitem&pageSize=25&filters=Projects%7BIntune%7DArea%20Paths%7BIntune%5CMgmt%5CAndroid%20Mobility%5CMAM%20Android%7D"
-}
-function enghub   {
-    $q = [uri]::EscapeDataString($args -join ' ')
-    Start-Process "https://eng.ms/search?q=$q&filter=%5B%7B%22name%22:%22contentId%22,%22operator%22:%22eq%22,%22value%22:%22310dd059-c877-4f12-816b-c7a2ef5be9c1%22%7D%5D"
-}
