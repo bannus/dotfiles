@@ -41,6 +41,7 @@ During `chezmoi init`, you'll be prompted:
 | `~/.copilot/copilot-instructions.md` | `copilot/copilot-instructions.md` | Symlink |
 | `~/.iterm/com.googlecode.iterm2.plist` | `iterm/config.plist` | Symlink (macOS only) |
 | Windows Terminal `settings.json` | `windows-terminal/settings.json` + fragments | `run_onchange_` script |
+| Android Studio keymaps, colors, options | `android-studio/config/` | `run_onchange_` script (Windows, all AS versions) |
 | `C:\Developer\bavander` | `windows-shell/` | Junction (`run_once_` script, Windows only) |
 
 ## Daily workflow
@@ -65,7 +66,7 @@ chezmoi diff
 - `vim/` — Vim configuration (git submodule → [bannus/vimrc](https://github.com/bannus/vimrc))
 - `windows-terminal/` — Base settings + work profile fragments
 - `windows-shell/` — PowerShell profile, aliases, scripts (exposed via junction at `C:\Developer\bavander`)
-- `android-studio/`, `wox/` — App-specific configs
+- `android-studio/` — Custom keymaps, color schemes, and options (deployed to all installed AS versions)
 - `dot_*.tmpl`, `symlink_*.tmpl`, `_*.tmpl` — chezmoi templates and symlinks
 - `run_*` — chezmoi run scripts (submodule init, WT merge, junction setup)
 - `.chezmoi.toml.tmpl` — chezmoi configuration template
