@@ -8,8 +8,9 @@ $wsSource = {{ joinPath .chezmoi.sourceDir "windows-shell" | quote }}
 if (Test-Path $devTarget) {
     $item = Get-Item $devTarget -Force
     if ($item.LinkType -eq "Junction") {
-        $resolvedTarget = (Get-Item $devTarget -Force).Target
-        if ($resolvedTarget -contains $wsSource) {
+        $resolvedTarget = (Get-Item $devTarget -Force).Target | ForEach-Object { [IO.Path]::GetFullPath($_) }
+        $expectedPath = [IO.Path]::GetFullPath($wsSource)
+        if ($resolvedTarget -contains $expectedPath) {
             Write-Host "Junction $devTarget already points to $wsSource"
             exit 0
         }
