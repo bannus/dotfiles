@@ -1,0 +1,25 @@
+{{ if ne .chezmoi.os "windows" -}}
+exit 0
+{{ else -}}
+# Remove pre-existing NTFS junctions at chezmoi symlink targets.
+# Chezmoi cannot overwrite junctions with symlinks, so this script
+# ensures a clean slate on every apply.
+
+$targets = @(
+    "{{ joinPath .chezmoi.homeDir ".vim" }}"
+    "{{ joinPath .chezmoi.homeDir "vimfiles" }}"
+    "{{ joinPath .chezmoi.homeDir ".editorconfig" }}"
+    "{{ joinPath .chezmoi.homeDir ".ssh" "config" }}"
+    "{{ joinPath .chezmoi.homeDir ".copilot" "copilot-instructions.md" }}"
+)
+
+foreach ($path in $targets) {
+    if (Test-Path $path) {
+        $item = Get-Item $path -Force
+        if ($item.LinkType -eq "Junction") {
+            Write-Host "Removing junction: $path"
+            $item.Delete()
+        }
+    }
+}
+{{ end -}}
