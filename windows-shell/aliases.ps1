@@ -51,13 +51,19 @@ function adb {
     }
 
     if ($env:SPECIFIC_DEVICE) {
-        $output = & $adbExe -s $env:SPECIFIC_DEVICE @args 2>&1
-        if ($output -match "device '.*' not found") {
+        # Validate the pinned device with a fast, bounded check instead of
+        # capturing the real command's output. Capturing stdout buffers it
+        # until the process exits, which breaks interactive/streaming commands
+        # (`adb shell`, `logcat`, `shell top`, `screenrecord`, `sideload`, ...)
+        # making them appear to hang and swallowing Ctrl-C.
+        $state = & $adbExe -s $env:SPECIFIC_DEVICE get-state 2>&1
+        if ($state -match "device '.*' not found|no devices|not found") {
             Write-Host "Device [$env:SPECIFIC_DEVICE] not found, clearing." -ForegroundColor Yellow
             $env:SPECIFIC_DEVICE = $null
             & $adbExe @args
         } else {
-            $output
+            # Pass through directly so the console stays live.
+            & $adbExe -s $env:SPECIFIC_DEVICE @args
         }
     } else {
         & $adbExe @args
