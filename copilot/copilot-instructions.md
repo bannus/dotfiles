@@ -3,7 +3,6 @@
 ## Formatting
 
 - When asked for raw markdown output, print it in a multi-line code block using tildes (`~~~`) so that inner code blocks using backticks render correctly.
-- Avoid unusual characters when writing on my behalf. Em dashes (`—`) are acceptable in contexts that support markdown -- use two hyphens (`--`) for them, but sparingly.
 
 ## Writing Voice
 
@@ -17,6 +16,8 @@ When writing on my behalf (PR descriptions, comments, replies, docs, commit mess
 - Hedge sparingly and with measured language -- "I think it's pretty likely" not "it might possibly perhaps be the case".
 - Never use sycophantic filler ("great question", "hope this helps", "please let me know", "it's worth noting", "notably", "comprehensive").
 - For minor review suggestions, use a `[nit]` prefix.
+- Avoid dashes. Never use em dashes; avoid dashes generally. When a break is truly needed, use ` -- `, sparingly (reads as human-written).
+- Reference only the specifics that earn their place -- bug IDs, PR numbers, concrete figures, and the one or two names a reader needs. In posted comments, prune method/API names and other code identifiers that aren't load-bearing.
 
 ## Accuracy
 
@@ -44,3 +45,5 @@ When writing on my behalf (PR descriptions, comments, replies, docs, commit mess
 
 - Unless I specify otherwise, create ADO work items in Area Path `Intune\Mgmt\Android Mobility\MAM Android`.
 - My primary ADO organization URL is https://dev.azure.com/msazure/
+- When referencing ADO work items in commit messages or PR descriptions, use `#12345` (not `AB#12345`). The `#` syntax creates automatic links in Azure DevOps.
+- MAM Android team member names and ADO identity IDs are stored in Copilot user memories (not here). Run `scripts/refresh-team-roster.ps1` to re-seed them after team changes.
