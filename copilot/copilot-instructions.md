@@ -46,4 +46,4 @@ When writing on my behalf (PR descriptions, comments, replies, docs, commit mess
 - Unless I specify otherwise, create ADO work items in Area Path `Intune\Mgmt\Android Mobility\MAM Android`.
 - My primary ADO organization URL is https://dev.azure.com/msazure/
 - When referencing ADO work items in commit messages or PR descriptions, use `#12345` (not `AB#12345`). The `#` syntax creates automatic links in Azure DevOps.
-- MAM Android team member names and ADO identity IDs are stored in Copilot user memories (not here). Run `scripts/refresh-team-roster.ps1` to re-seed them after team changes.
+- MAM Android team member names and ADO identity IDs are stored in Copilot user memories (not here). Re-seed after team changes by running `~\.dotfiles\scripts\refresh-team-roster.ps1`.
