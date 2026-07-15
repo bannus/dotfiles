@@ -1,7 +1,7 @@
 {
     "profiles": [
         {
-            "commandline": "cmd.exe /k c:/src/mdm/_BuildCommon/Scripts/Startup.cmd & pwsh",
+            "commandline": "pwsh -NoLogo -NoExit -F C:\\src\\mdm\\init.ps1",
             "guid": "{92f6a13a-5ef5-4f7a-aa2d-f82825503a67}",
             "hidden": false,
             "icon": "c:/src/mdm/_BuildCommon/Shortcut.ico",

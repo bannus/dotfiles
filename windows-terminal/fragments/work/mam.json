@@ -1,7 +1,7 @@
 {
     "profiles": [
         {
-            "commandline": "cmd.exe /k c:/src/mam/_BuildCommon/Scripts/Startup.cmd & pwsh",
+            "commandline": "pwsh -NoLogo -NoExit -F C:\\src\\mam\\init.ps1",
             "font": {
                 "face": "Consolas"
             },

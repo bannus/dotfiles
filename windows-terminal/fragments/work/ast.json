@@ -1,7 +1,7 @@
 {
     "profiles": [
         {
-            "commandline": "cmd.exe /k c:/src/ast/_BuildCommon/Scripts/Startup.cmd & pwsh",
+            "commandline": "pwsh -NoLogo -NoExit -F C:\\src\\ast\\init.ps1",
             "guid": "{acff64f3-1b72-4fb5-8a8c-9183b362511a}",
             "hidden": false,
             "icon": "c:/src/ast/_BuildCommon/Shortcut.ico",
