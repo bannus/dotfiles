@@ -3,8 +3,6 @@
 #= Loaded by the OneDrive-synced stub in Documents\PowerShell\$PROFILE
 #==============================================================================
 
-if ($env:TERM_PROGRAM -eq "vscode") { . "$(code --locate-shell-integration-path pwsh)" }
-
 # Auto-install required modules
 if (-not (Get-Module -ListAvailable -Name BurntToast)) {
     Write-Host "Installing BurntToast module..." -ForegroundColor Yellow
@@ -40,6 +38,9 @@ if (-not $env:ANDROID_SDK_ROOT) {
 }
 
 oh-my-posh init --config 'stelbent.minimal' pwsh | Invoke-Expression
+
+# Load this after prompt customization so VS Code can retain command lifecycle hooks.
+if ($env:TERM_PROGRAM -eq "vscode") { . "$(code --locate-shell-integration-path pwsh)" }
 
 # Set DEVELOPER_ROOT and add Scripts to PATH
 $env:DEVELOPER_ROOT = "C:\developer\bavander"
